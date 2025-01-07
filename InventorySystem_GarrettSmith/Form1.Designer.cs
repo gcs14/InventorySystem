@@ -37,6 +37,12 @@
             this.productsSearchBar = new System.Windows.Forms.TextBox();
             this.partsSearchBtn = new System.Windows.Forms.Button();
             this.productsSearchBtn = new System.Windows.Forms.Button();
+            this.partAddBtn = new System.Windows.Forms.Button();
+            this.partModifyBtn = new System.Windows.Forms.Button();
+            this.partDeleteBtn = new System.Windows.Forms.Button();
+            this.productAddBtn = new System.Windows.Forms.Button();
+            this.productModifyBtn = new System.Windows.Forms.Button();
+            this.productDeleteBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvParts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
@@ -127,11 +133,72 @@
             this.productsSearchBtn.Text = "Search";
             this.productsSearchBtn.UseVisualStyleBackColor = true;
             // 
+            // partAddBtn
+            // 
+            this.partAddBtn.Location = new System.Drawing.Point(265, 534);
+            this.partAddBtn.Name = "partAddBtn";
+            this.partAddBtn.Size = new System.Drawing.Size(75, 23);
+            this.partAddBtn.TabIndex = 5;
+            this.partAddBtn.Text = "Add";
+            this.partAddBtn.UseVisualStyleBackColor = true;
+            // 
+            // partModifyBtn
+            // 
+            this.partModifyBtn.Location = new System.Drawing.Point(377, 534);
+            this.partModifyBtn.Name = "partModifyBtn";
+            this.partModifyBtn.Size = new System.Drawing.Size(75, 23);
+            this.partModifyBtn.TabIndex = 5;
+            this.partModifyBtn.Text = "Modify";
+            this.partModifyBtn.UseVisualStyleBackColor = true;
+            this.partModifyBtn.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // partDeleteBtn
+            // 
+            this.partDeleteBtn.Location = new System.Drawing.Point(485, 534);
+            this.partDeleteBtn.Name = "partDeleteBtn";
+            this.partDeleteBtn.Size = new System.Drawing.Size(75, 23);
+            this.partDeleteBtn.TabIndex = 5;
+            this.partDeleteBtn.Text = "Delete";
+            this.partDeleteBtn.UseVisualStyleBackColor = true;
+            // 
+            // productAddBtn
+            // 
+            this.productAddBtn.Location = new System.Drawing.Point(824, 534);
+            this.productAddBtn.Name = "productAddBtn";
+            this.productAddBtn.Size = new System.Drawing.Size(75, 23);
+            this.productAddBtn.TabIndex = 5;
+            this.productAddBtn.Text = "Add";
+            this.productAddBtn.UseVisualStyleBackColor = true;
+            // 
+            // productModifyBtn
+            // 
+            this.productModifyBtn.Location = new System.Drawing.Point(936, 534);
+            this.productModifyBtn.Name = "productModifyBtn";
+            this.productModifyBtn.Size = new System.Drawing.Size(75, 23);
+            this.productModifyBtn.TabIndex = 5;
+            this.productModifyBtn.Text = "Modify";
+            this.productModifyBtn.UseVisualStyleBackColor = true;
+            // 
+            // productDeleteBtn
+            // 
+            this.productDeleteBtn.Location = new System.Drawing.Point(1044, 534);
+            this.productDeleteBtn.Name = "productDeleteBtn";
+            this.productDeleteBtn.Size = new System.Drawing.Size(75, 23);
+            this.productDeleteBtn.TabIndex = 5;
+            this.productDeleteBtn.Text = "Delete";
+            this.productDeleteBtn.UseVisualStyleBackColor = true;
+            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1133, 632);
+            this.Controls.Add(this.productDeleteBtn);
+            this.Controls.Add(this.partDeleteBtn);
+            this.Controls.Add(this.productModifyBtn);
+            this.Controls.Add(this.partModifyBtn);
+            this.Controls.Add(this.productAddBtn);
+            this.Controls.Add(this.partAddBtn);
             this.Controls.Add(this.productsSearchBtn);
             this.Controls.Add(this.partsSearchBtn);
             this.Controls.Add(this.productsSearchBar);
@@ -162,6 +229,12 @@
         private System.Windows.Forms.TextBox productsSearchBar;
         private System.Windows.Forms.Button partsSearchBtn;
         private System.Windows.Forms.Button productsSearchBtn;
+        private System.Windows.Forms.Button partAddBtn;
+        private System.Windows.Forms.Button partModifyBtn;
+        private System.Windows.Forms.Button partDeleteBtn;
+        private System.Windows.Forms.Button productAddBtn;
+        private System.Windows.Forms.Button productModifyBtn;
+        private System.Windows.Forms.Button productDeleteBtn;
     }
 }
 

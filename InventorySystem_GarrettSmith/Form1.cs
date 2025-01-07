@@ -38,5 +38,10 @@ namespace InventorySystem_GarrettSmith
         {
             dgvProducts.ClearSelection();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
