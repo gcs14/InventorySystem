@@ -15,8 +15,16 @@ namespace InventorySystem_GarrettSmith
         public MainScreen()
         {
             InitializeComponent();
+            Inventory.GenerateDemoData();
 
-            dgvProducts.DataSource = model.Product.Products;
+            var bsProducts = new BindingSource();
+            bsProducts.DataSource = Inventory.Products;
+            dgvProducts.DataSource = bsProducts;
+
+            dgvProducts.Columns["ProductID"].HeaderText = "Product ID";
+            dgvProducts.Columns["Name"].HeaderText = "Name";
+            dgvProducts.Columns["InStock"].HeaderText = "Inventory";
+            dgvProducts.Columns["Price"].HeaderText = "Price";
         }
 
         private void Form1_Load(object sender, EventArgs e)
