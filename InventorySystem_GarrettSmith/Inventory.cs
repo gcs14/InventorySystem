@@ -125,9 +125,14 @@ namespace InventorySystem_GarrettSmith
             }
         }
 
-            //+ addPart(Part) : void
-            //+ deletePart(Part) : bool
-            //+ lookupPart(int) : Part
-            //+ updatePart(int, Part) : void
+        //+ addPart(Part) : void
+        public static void AddPart(Part part)
+        {
+            AllParts.Add(part);
         }
+
+        //+ deletePart(Part) : bool
+        //+ lookupPart(int) : Part
+        //+ updatePart(int, Part) : void
+    }
 }

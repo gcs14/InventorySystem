@@ -33,19 +33,19 @@
             this.outsourcedRadio = new System.Windows.Forms.RadioButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.partIDLabel = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.addPartName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.addPartInventory = new System.Windows.Forms.TextBox();
+            this.addPartPrice = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.addPartMax = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.addPartMin = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox7 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.toggleLabel = new System.Windows.Forms.Label();
+            this.addPartSaveBtn = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -70,7 +70,7 @@
             this.inhouseRadio.TabStop = true;
             this.inhouseRadio.Text = "In-House";
             this.inhouseRadio.UseVisualStyleBackColor = true;
-            this.inhouseRadio.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.inhouseRadio.CheckedChanged += new System.EventHandler(this.inhouseRadio_CheckedChanged);
             // 
             // outsourcedRadio
             // 
@@ -79,20 +79,20 @@
             this.outsourcedRadio.Location = new System.Drawing.Point(293, 12);
             this.outsourcedRadio.Name = "outsourcedRadio";
             this.outsourcedRadio.Size = new System.Drawing.Size(104, 22);
-            this.outsourcedRadio.TabIndex = 1;
+            this.outsourcedRadio.TabIndex = 2;
             this.outsourcedRadio.TabStop = true;
             this.outsourcedRadio.Text = "Outsourced";
             this.outsourcedRadio.UseVisualStyleBackColor = true;
-            this.outsourcedRadio.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.outsourcedRadio.CheckedChanged += new System.EventHandler(this.outsourcedRadio_CheckedChanged);
             // 
             // textBox1
             // 
+            this.textBox1.Enabled = false;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(164, 106);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(198, 23);
             this.textBox1.TabIndex = 2;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // partIDLabel
             // 
@@ -103,16 +103,15 @@
             this.partIDLabel.Size = new System.Drawing.Size(22, 18);
             this.partIDLabel.TabIndex = 3;
             this.partIDLabel.Text = "ID";
-            this.partIDLabel.Click += new System.EventHandler(this.label2_Click);
             // 
-            // textBox2
+            // addPartName
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(164, 154);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(198, 23);
-            this.textBox2.TabIndex = 2;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.addPartName.AcceptsTab = true;
+            this.addPartName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addPartName.Location = new System.Drawing.Point(164, 154);
+            this.addPartName.Name = "addPartName";
+            this.addPartName.Size = new System.Drawing.Size(198, 23);
+            this.addPartName.TabIndex = 3;
             // 
             // label3
             // 
@@ -123,25 +122,25 @@
             this.label3.Size = new System.Drawing.Size(48, 18);
             this.label3.TabIndex = 3;
             this.label3.Text = "Name";
-            this.label3.Click += new System.EventHandler(this.label2_Click);
             // 
-            // textBox3
+            // addPartInventory
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(164, 205);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(198, 23);
-            this.textBox3.TabIndex = 2;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.addPartInventory.AcceptsTab = true;
+            this.addPartInventory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addPartInventory.Location = new System.Drawing.Point(164, 205);
+            this.addPartInventory.Name = "addPartInventory";
+            this.addPartInventory.Size = new System.Drawing.Size(198, 23);
+            this.addPartInventory.TabIndex = 4;
+            this.addPartInventory.Leave += new System.EventHandler(this.AddPartInventoryValidation);
             // 
-            // textBox4
+            // addPartPrice
             // 
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(164, 253);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(198, 23);
-            this.textBox4.TabIndex = 2;
-            this.textBox4.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.addPartPrice.AcceptsTab = true;
+            this.addPartPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addPartPrice.Location = new System.Drawing.Point(164, 253);
+            this.addPartPrice.Name = "addPartPrice";
+            this.addPartPrice.Size = new System.Drawing.Size(198, 23);
+            this.addPartPrice.TabIndex = 5;
             // 
             // label4
             // 
@@ -152,7 +151,6 @@
             this.label4.Size = new System.Drawing.Size(67, 18);
             this.label4.TabIndex = 3;
             this.label4.Text = "Inventory";
-            this.label4.Click += new System.EventHandler(this.label2_Click);
             // 
             // label5
             // 
@@ -163,16 +161,16 @@
             this.label5.Size = new System.Drawing.Size(42, 18);
             this.label5.TabIndex = 3;
             this.label5.Text = "Price";
-            this.label5.Click += new System.EventHandler(this.label2_Click);
             // 
-            // textBox5
+            // addPartMax
             // 
-            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(164, 303);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(86, 23);
-            this.textBox5.TabIndex = 2;
-            this.textBox5.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.addPartMax.AcceptsTab = true;
+            this.addPartMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addPartMax.Location = new System.Drawing.Point(164, 303);
+            this.addPartMax.Name = "addPartMax";
+            this.addPartMax.Size = new System.Drawing.Size(86, 23);
+            this.addPartMax.TabIndex = 6;
+            this.addPartMax.Leave += new System.EventHandler(this.AddPartMaxValidation);
             // 
             // label1
             // 
@@ -183,16 +181,16 @@
             this.label1.Size = new System.Drawing.Size(36, 18);
             this.label1.TabIndex = 3;
             this.label1.Text = "Max";
-            this.label1.Click += new System.EventHandler(this.label2_Click);
             // 
-            // textBox6
+            // addPartMin
             // 
-            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(359, 303);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(86, 23);
-            this.textBox6.TabIndex = 2;
-            this.textBox6.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.addPartMin.AcceptsTab = true;
+            this.addPartMin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addPartMin.Location = new System.Drawing.Point(359, 303);
+            this.addPartMin.Name = "addPartMin";
+            this.addPartMin.Size = new System.Drawing.Size(86, 23);
+            this.addPartMin.TabIndex = 7;
+            this.addPartMin.Leave += new System.EventHandler(this.AddPartMinValidation);
             // 
             // label6
             // 
@@ -203,38 +201,37 @@
             this.label6.Size = new System.Drawing.Size(32, 18);
             this.label6.TabIndex = 3;
             this.label6.Text = "Min";
-            this.label6.Click += new System.EventHandler(this.label2_Click);
             // 
             // textBox7
             // 
+            this.textBox7.AcceptsTab = true;
             this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox7.Location = new System.Drawing.Point(164, 355);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(198, 23);
-            this.textBox7.TabIndex = 2;
-            this.textBox7.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox7.TabIndex = 8;
             // 
-            // label7
+            // toggleLabel
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(55, 355);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(82, 18);
-            this.label7.TabIndex = 3;
-            this.label7.Text = "Machine ID";
-            this.label7.Click += new System.EventHandler(this.label2_Click);
+            this.toggleLabel.AutoSize = true;
+            this.toggleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toggleLabel.Location = new System.Drawing.Point(55, 355);
+            this.toggleLabel.Name = "toggleLabel";
+            this.toggleLabel.Size = new System.Drawing.Size(82, 18);
+            this.toggleLabel.TabIndex = 3;
+            this.toggleLabel.Text = "Machine ID";
             // 
-            // button1
+            // addPartSaveBtn
             // 
-            this.button1.AutoSize = true;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(317, 407);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 27);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
+            this.addPartSaveBtn.AutoSize = true;
+            this.addPartSaveBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addPartSaveBtn.Location = new System.Drawing.Point(317, 407);
+            this.addPartSaveBtn.Name = "addPartSaveBtn";
+            this.addPartSaveBtn.Size = new System.Drawing.Size(75, 27);
+            this.addPartSaveBtn.TabIndex = 9;
+            this.addPartSaveBtn.Text = "Save";
+            this.addPartSaveBtn.UseVisualStyleBackColor = true;
+            this.addPartSaveBtn.Click += new System.EventHandler(this.AddPartSave_Click);
             // 
             // button2
             // 
@@ -243,9 +240,10 @@
             this.button2.Location = new System.Drawing.Point(415, 407);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 27);
-            this.button2.TabIndex = 4;
+            this.button2.TabIndex = 10;
             this.button2.Text = "Cancel";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.AddPartCancel_Click);
             // 
             // AddPartScreen
             // 
@@ -253,20 +251,20 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(528, 456);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.addPartSaveBtn);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.toggleLabel);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.addPartMin);
             this.Controls.Add(this.partIDLabel);
             this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.addPartMax);
+            this.Controls.Add(this.addPartPrice);
+            this.Controls.Add(this.addPartInventory);
+            this.Controls.Add(this.addPartName);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.outsourcedRadio);
             this.Controls.Add(this.inhouseRadio);
@@ -285,19 +283,19 @@
         private System.Windows.Forms.RadioButton outsourcedRadio;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label partIDLabel;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox addPartName;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox addPartInventory;
+        private System.Windows.Forms.TextBox addPartPrice;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox addPartMax;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox addPartMin;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label toggleLabel;
+        private System.Windows.Forms.Button addPartSaveBtn;
         private System.Windows.Forms.Button button2;
     }
 }

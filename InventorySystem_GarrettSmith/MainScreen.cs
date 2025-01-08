@@ -29,7 +29,7 @@ namespace InventorySystem_GarrettSmith
 
             dgvProducts.Columns["ProductID"].HeaderText = "Product ID";
             dgvProducts.Columns["Name"].HeaderText = "Name";
-            dgvProducts.Columns["InStock"].HeaderText = "Inventory";
+            dgvProducts.Columns["InStock"].HeaderText = "Inventory Level";
             dgvProducts.Columns["Price"].HeaderText = "Price";
 
             var bsParts = new BindingSource();
@@ -38,7 +38,7 @@ namespace InventorySystem_GarrettSmith
 
             dgvParts.Columns["PartID"].HeaderText = "Part ID";
             dgvParts.Columns["Name"].HeaderText = "Name";
-            dgvParts.Columns["InStock"].HeaderText = "Inventory";
+            dgvParts.Columns["InStock"].HeaderText = "Inventory Level";
             dgvParts.Columns["Price"].HeaderText = "Price";
         }
 
@@ -47,9 +47,14 @@ namespace InventorySystem_GarrettSmith
             dgvProducts.ClearSelection();
         }
 
-        private void BtnAddPart_Click(object sender, EventArgs e)
+        private void AddPart_Click(object sender, EventArgs e)
         {
             new AddPartScreen().ShowDialog();
+        }
+
+        private void ModifyPart_Click(object sender, EventArgs e)
+        {
+            new ModifyPartScreen().ShowDialog();
         }
 
         private void BtnAddProduct_Click(object sender, EventArgs e)
@@ -57,7 +62,5 @@ namespace InventorySystem_GarrettSmith
             Product selectedProduct = (Product)dgvProducts.CurrentRow.DataBoundItem;
             new AddProductScreen().ShowDialog();
         }
-
-        
     }
 }
