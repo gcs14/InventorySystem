@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddPart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddPart.Designer.cs">
+      <DependentUpon>AddPart.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddProduct.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,10 +66,15 @@
     <Compile Include="MainScreen.Designer.cs">
       <DependentUpon>MainScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="model\Inhouse.cs" />
+    <Compile Include="model\Outsourced.cs" />
     <Compile Include="model\Part.cs" />
     <Compile Include="model\Product.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddPart.resx">
+      <DependentUpon>AddPart.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddProduct.resx">
       <DependentUpon>AddProduct.cs</DependentUpon>
     </EmbeddedResource>

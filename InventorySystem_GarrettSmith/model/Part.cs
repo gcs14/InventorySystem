@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InventorySystem_GarrettSmith.model
 {
-    internal class Part
+    public abstract class Part
     {
         public int PartID { get; set; }
         public string Name { get; set; }

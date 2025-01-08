@@ -10,7 +10,6 @@ namespace InventorySystem_GarrettSmith.model
 {
     internal class Product
     {
-        public static List<Product> Products = new List<Product>();
         public static BindingList<Part> AssociatedParts = new BindingList<Part>();
         public int ProductID { get; set; }
         public string Name { get; set; }
@@ -30,6 +29,11 @@ namespace InventorySystem_GarrettSmith.model
             Price = price;
             Min = min;
             Max = max;
+        }
+
+        public void AddAssociatedPart(Part part)
+        {
+            AssociatedParts.Add(part);
         }
     }
 }

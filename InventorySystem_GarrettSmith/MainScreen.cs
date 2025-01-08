@@ -16,6 +16,11 @@ namespace InventorySystem_GarrettSmith
         public MainScreen()
         {
             InitializeComponent();
+            MainScreen_Load();
+        }
+
+        private void MainScreen_Load()
+        {
             Inventory.GenerateDemoData();
 
             var bsProducts = new BindingSource();
@@ -26,21 +31,15 @@ namespace InventorySystem_GarrettSmith
             dgvProducts.Columns["Name"].HeaderText = "Name";
             dgvProducts.Columns["InStock"].HeaderText = "Inventory";
             dgvProducts.Columns["Price"].HeaderText = "Price";
-        }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
+            var bsParts = new BindingSource();
+            bsParts.DataSource = Inventory.AllParts;
+            dgvParts.DataSource = bsParts;
 
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
+            dgvParts.Columns["PartID"].HeaderText = "Part ID";
+            dgvParts.Columns["Name"].HeaderText = "Name";
+            dgvParts.Columns["InStock"].HeaderText = "Inventory";
+            dgvParts.Columns["Price"].HeaderText = "Price";
         }
 
         private void myBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -48,15 +47,17 @@ namespace InventorySystem_GarrettSmith
             dgvProducts.ClearSelection();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void BtnAddPart_Click(object sender, EventArgs e)
         {
-
+            new AddPartScreen().ShowDialog();
         }
 
         private void BtnAddProduct_Click(object sender, EventArgs e)
         {
             Product selectedProduct = (Product)dgvProducts.CurrentRow.DataBoundItem;
-            new AddProduct().ShowDialog();
+            new AddProductScreen().ShowDialog();
         }
+
+        
     }
 }

@@ -51,7 +51,7 @@
             // 
             this.mainScreenLabel.AutoSize = true;
             this.mainScreenLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mainScreenLabel.Location = new System.Drawing.Point(0, 0);
+            this.mainScreenLabel.Location = new System.Drawing.Point(6, 9);
             this.mainScreenLabel.Name = "mainScreenLabel";
             this.mainScreenLabel.Size = new System.Drawing.Size(389, 31);
             this.mainScreenLabel.TabIndex = 0;
@@ -59,10 +59,15 @@
             // 
             // dgvParts
             // 
+            this.dgvParts.AllowUserToAddRows = false;
+            this.dgvParts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvParts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvParts.Location = new System.Drawing.Point(12, 117);
+            this.dgvParts.MultiSelect = false;
             this.dgvParts.Name = "dgvParts";
+            this.dgvParts.ReadOnly = true;
             this.dgvParts.RowHeadersVisible = false;
+            this.dgvParts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvParts.Size = new System.Drawing.Size(548, 394);
             this.dgvParts.TabIndex = 1;
             // 
@@ -85,108 +90,124 @@
             // 
             this.partsLabel.AutoSize = true;
             this.partsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.partsLabel.Location = new System.Drawing.Point(7, 85);
+            this.partsLabel.Location = new System.Drawing.Point(7, 77);
             this.partsLabel.Name = "partsLabel";
             this.partsLabel.Size = new System.Drawing.Size(63, 26);
             this.partsLabel.TabIndex = 2;
             this.partsLabel.Text = "Parts";
-            this.partsLabel.Click += new System.EventHandler(this.label2_Click);
             // 
             // productsLabel
             // 
             this.productsLabel.AutoSize = true;
             this.productsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productsLabel.Location = new System.Drawing.Point(585, 85);
+            this.productsLabel.Location = new System.Drawing.Point(585, 77);
             this.productsLabel.Name = "productsLabel";
             this.productsLabel.Size = new System.Drawing.Size(98, 26);
             this.productsLabel.TabIndex = 2;
             this.productsLabel.Text = "Products";
-            this.productsLabel.Click += new System.EventHandler(this.label2_Click);
             // 
             // partsSearchBar
             // 
-            this.partsSearchBar.Location = new System.Drawing.Point(355, 85);
+            this.partsSearchBar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.partsSearchBar.Location = new System.Drawing.Point(355, 75);
             this.partsSearchBar.Name = "partsSearchBar";
-            this.partsSearchBar.Size = new System.Drawing.Size(205, 20);
+            this.partsSearchBar.Size = new System.Drawing.Size(205, 23);
             this.partsSearchBar.TabIndex = 3;
             // 
             // productsSearchBar
             // 
-            this.productsSearchBar.Location = new System.Drawing.Point(914, 87);
+            this.productsSearchBar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.productsSearchBar.Location = new System.Drawing.Point(914, 77);
             this.productsSearchBar.Name = "productsSearchBar";
-            this.productsSearchBar.Size = new System.Drawing.Size(205, 20);
+            this.productsSearchBar.Size = new System.Drawing.Size(205, 23);
             this.productsSearchBar.TabIndex = 3;
             // 
             // partsSearchBtn
             // 
-            this.partsSearchBtn.Location = new System.Drawing.Point(265, 85);
+            this.partsSearchBtn.AutoSize = true;
+            this.partsSearchBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.partsSearchBtn.Location = new System.Drawing.Point(265, 75);
             this.partsSearchBtn.Name = "partsSearchBtn";
-            this.partsSearchBtn.Size = new System.Drawing.Size(75, 23);
+            this.partsSearchBtn.Size = new System.Drawing.Size(75, 27);
             this.partsSearchBtn.TabIndex = 4;
             this.partsSearchBtn.Text = "Search";
             this.partsSearchBtn.UseVisualStyleBackColor = true;
-            this.partsSearchBtn.Click += new System.EventHandler(this.button1_Click);
             // 
             // productsSearchBtn
             // 
-            this.productsSearchBtn.Location = new System.Drawing.Point(821, 87);
+            this.productsSearchBtn.AutoSize = true;
+            this.productsSearchBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.productsSearchBtn.Location = new System.Drawing.Point(821, 77);
             this.productsSearchBtn.Name = "productsSearchBtn";
-            this.productsSearchBtn.Size = new System.Drawing.Size(75, 23);
+            this.productsSearchBtn.Size = new System.Drawing.Size(75, 27);
             this.productsSearchBtn.TabIndex = 4;
             this.productsSearchBtn.Text = "Search";
             this.productsSearchBtn.UseVisualStyleBackColor = true;
             // 
             // partAddBtn
             // 
+            this.partAddBtn.AutoSize = true;
+            this.partAddBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.partAddBtn.Location = new System.Drawing.Point(265, 534);
             this.partAddBtn.Name = "partAddBtn";
-            this.partAddBtn.Size = new System.Drawing.Size(75, 23);
+            this.partAddBtn.Size = new System.Drawing.Size(75, 27);
             this.partAddBtn.TabIndex = 5;
             this.partAddBtn.Text = "Add";
             this.partAddBtn.UseVisualStyleBackColor = true;
+            this.partAddBtn.Click += new System.EventHandler(this.BtnAddPart_Click);
             // 
             // partModifyBtn
             // 
-            this.partModifyBtn.Location = new System.Drawing.Point(377, 534);
+            this.partModifyBtn.AutoSize = true;
+            this.partModifyBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.partModifyBtn.Location = new System.Drawing.Point(374, 534);
             this.partModifyBtn.Name = "partModifyBtn";
-            this.partModifyBtn.Size = new System.Drawing.Size(75, 23);
+            this.partModifyBtn.Size = new System.Drawing.Size(75, 27);
             this.partModifyBtn.TabIndex = 5;
             this.partModifyBtn.Text = "Modify";
             this.partModifyBtn.UseVisualStyleBackColor = true;
-            this.partModifyBtn.Click += new System.EventHandler(this.button2_Click);
             // 
             // partDeleteBtn
             // 
+            this.partDeleteBtn.AutoSize = true;
+            this.partDeleteBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.partDeleteBtn.Location = new System.Drawing.Point(485, 534);
             this.partDeleteBtn.Name = "partDeleteBtn";
-            this.partDeleteBtn.Size = new System.Drawing.Size(75, 23);
+            this.partDeleteBtn.Size = new System.Drawing.Size(75, 27);
             this.partDeleteBtn.TabIndex = 5;
             this.partDeleteBtn.Text = "Delete";
             this.partDeleteBtn.UseVisualStyleBackColor = true;
             // 
             // productAddBtn
             // 
+            this.productAddBtn.AutoSize = true;
+            this.productAddBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.productAddBtn.Location = new System.Drawing.Point(824, 534);
             this.productAddBtn.Name = "productAddBtn";
-            this.productAddBtn.Size = new System.Drawing.Size(75, 23);
+            this.productAddBtn.Size = new System.Drawing.Size(75, 27);
             this.productAddBtn.TabIndex = 5;
             this.productAddBtn.Text = "Add";
             this.productAddBtn.UseVisualStyleBackColor = true;
+            this.productAddBtn.Click += new System.EventHandler(this.BtnAddProduct_Click);
             // 
             // productModifyBtn
             // 
-            this.productModifyBtn.Location = new System.Drawing.Point(936, 534);
+            this.productModifyBtn.AutoSize = true;
+            this.productModifyBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.productModifyBtn.Location = new System.Drawing.Point(932, 534);
             this.productModifyBtn.Name = "productModifyBtn";
-            this.productModifyBtn.Size = new System.Drawing.Size(75, 23);
+            this.productModifyBtn.Size = new System.Drawing.Size(75, 27);
             this.productModifyBtn.TabIndex = 5;
             this.productModifyBtn.Text = "Modify";
             this.productModifyBtn.UseVisualStyleBackColor = true;
             // 
             // productDeleteBtn
             // 
-            this.productDeleteBtn.Location = new System.Drawing.Point(1044, 534);
+            this.productDeleteBtn.AutoSize = true;
+            this.productDeleteBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.productDeleteBtn.Location = new System.Drawing.Point(1046, 534);
             this.productDeleteBtn.Name = "productDeleteBtn";
-            this.productDeleteBtn.Size = new System.Drawing.Size(75, 23);
+            this.productDeleteBtn.Size = new System.Drawing.Size(75, 27);
             this.productDeleteBtn.TabIndex = 5;
             this.productDeleteBtn.Text = "Delete";
             this.productDeleteBtn.UseVisualStyleBackColor = true;
@@ -213,7 +234,6 @@
             this.Controls.Add(this.mainScreenLabel);
             this.Name = "MainScreen";
             this.Text = "Main Screen";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvParts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
             this.ResumeLayout(false);

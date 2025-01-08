@@ -1,6 +1,6 @@
 ﻿namespace InventorySystem_GarrettSmith
 {
-    partial class AddProduct
+    partial class AddProductScreen
     {
         /// <summary>
         /// Required designer variable.
@@ -43,13 +43,13 @@
             this.label1.Text = "Hello World\r\n";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // AddProduct
+            // AddProductScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label1);
-            this.Name = "AddProduct";
+            this.Name = "AddProductScreen";
             this.Text = "AddProduct";
             this.Load += new System.EventHandler(this.AddProduct_Load);
             this.ResumeLayout(false);
