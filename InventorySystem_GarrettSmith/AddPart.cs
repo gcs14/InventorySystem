@@ -102,7 +102,7 @@ namespace InventorySystem_GarrettSmith
                 addPartInventory.Text = "";
                 addPartInventory.Focus();
             }
-            InventoryInRange();
+            //InventoryInRange();
         }
 
         private void EntryValidation(object sender, EventArgs e)
@@ -175,8 +175,9 @@ namespace InventorySystem_GarrettSmith
                     addPartMax.Text = "";
                     addPartMin.Text = "";
                 }
+                InventoryInRange();
             }
-            InventoryInRange();
+            
         }
 
         private void InventoryInRange()
@@ -186,10 +187,11 @@ namespace InventorySystem_GarrettSmith
                 if (int.Parse(addPartInventory.Text) < int.Parse(addPartMin.Text) || int.Parse(addPartInventory.Text) > int.Parse(addPartMax.Text))
                 {
                     MessageBox.Show("Inventory must be between Min and Max.");
-                    addPartInventory.Focus();
+                    this.ActiveControl = null;
+                    //addPartInventory.Focus();
+
                 }
             }
-
         }
 
 
