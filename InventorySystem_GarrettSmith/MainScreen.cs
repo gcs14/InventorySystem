@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InventorySystem_GarrettSmith.model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -50,6 +51,12 @@ namespace InventorySystem_GarrettSmith
         private void button2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void BtnAddProduct_Click(object sender, EventArgs e)
+        {
+            Product selectedProduct = (Product)dgvProducts.CurrentRow.DataBoundItem;
+            new AddProduct().ShowDialog();
         }
     }
 }
