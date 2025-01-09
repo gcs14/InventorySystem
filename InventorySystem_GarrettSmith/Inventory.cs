@@ -132,6 +132,18 @@ namespace InventorySystem_GarrettSmith
         }
 
         //+ deletePart(Part) : bool
+        public static bool DeletePart(Part part)
+        {
+            foreach (Part p in AllParts)
+            {
+                if (p.PartID == part.PartID)
+                {
+                    AllParts.Remove(p);
+                    return true;
+                }
+            }
+            return false;
+        }
         //+ lookupPart(int) : Part
         //+ updatePart(int, Part) : void
     }

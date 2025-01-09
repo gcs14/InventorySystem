@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InventorySystem_GarrettSmith.model
 {
-    internal class Inhouse : Part
+    public class Inhouse : Part
     {
         public int MachineID { get; set; }
         public Inhouse()

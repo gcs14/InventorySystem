@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InventorySystem_GarrettSmith.model
 {
-    internal class Outsourced : Part
+    public class Outsourced : Part
     {
         public string CompanyName { get; set; }
         public Outsourced()

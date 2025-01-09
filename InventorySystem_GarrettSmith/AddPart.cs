@@ -22,45 +22,40 @@ namespace InventorySystem_GarrettSmith
         {
             toggleLabel.Text = "Machine ID";
             toggleLabel.Location = new Point(55, 355);
-            //addPartMachComBox.Text = "Mach ID";
         }
 
         private void outsourcedRadio_CheckedChanged(object sender, EventArgs e)
         {
             toggleLabel.Text = "Company Name";
             toggleLabel.Location = new Point(21, 356);
-            //addPartMachComBox.Text = "Comp Nm";
         }
-
-        //private bool MinMaxThrowException(string min, string max)
-        //{
-        //    try 
-        //    {
-        //        int minInt = Int32.Parse(min);
-        //        int maxInt = Int32.Parse(max);
-        //    }
-        //    catch
-        //    {
-        //        MessageBox.Show("Try again. Enter a the maximum ");
-        //        return true;
-        //    }
-
-
-        //    if (minInt == 0 || min is null)
-        //    {
-        //        MessageBox.Show("Try again. The minimum and  values cannot be 0.");
-        //        return false;
-        //    }
-        //    if (minInt > maxInt)
-        //    {
-        //        MessageBox.Show("Try again. The minimum cannot be greater than the maximum.");
-        //        return false;
-        //    }
-        //    return true;
-        //}
 
         private void AddPartSave_Click(object sender, EventArgs e)
         {
+            if (int.Parse(addPartMin.Text) > int.Parse(addPartMax.Text))
+            {
+                MessageBox.Show("Error: Max must be greater than Min.");
+                return;
+            }
+            if (int.Parse(addPartInventory.Text) > int.Parse(addPartMax.Text) || int.Parse(addPartInventory.Text) < int.Parse(addPartMin.Text))
+            {
+                MessageBox.Show("Error: Inventory stocked must be between Max and Min.");
+                return;
+            }
+            if (inhouseRadio.Checked == true && !int.TryParse(textBox7.Text, out _))
+            {
+                MessageBox.Show("Error: Enter a valid number for Machine ID.");
+                textBox7.Text = "";
+                return;
+            }
+            if (outsourcedRadio.Checked == true && int.TryParse(textBox7.Text, out _))
+            {
+                MessageBox.Show("Error: Enter a company name not a number.");
+                textBox7.Text = "";
+                return;
+            }
+
+
             if (inhouseRadio.Checked)
             {
                 Inventory.AddPart(new Inhouse(
@@ -88,47 +83,25 @@ namespace InventorySystem_GarrettSmith
             this.Close();
         }
 
-        private void AddPartCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void AddPartInventoryValidation(object sender, EventArgs e)
         {
             // Validate Inventory is a integer
             if (!int.TryParse(addPartInventory.Text, out _))
             {
-                MessageBox.Show("Enter a valid number for Inventory.");
+                MessageBox.Show("Error: Enter a valid number for Inventory.");
                 addPartInventory.Text = "";
                 addPartInventory.Focus();
             }
-            //InventoryInRange();
         }
 
-        private void EntryValidation(object sender, EventArgs e)
+        private void AddPartPriceValidation(object sender, EventArgs e)
         {
-            // Validate Inventory is an integer
-            if (!int.TryParse(addPartInventory.Text, out _))
-            {
-                MessageBox.Show("Enter a valid number for Inventory.");
-                addPartInventory.Text = "";
-                addPartInventory.Focus();
-            }
-
             // Validate Max is an integer
-            if (!int.TryParse(addPartMax.Text, out _))
+            if (!decimal.TryParse(addPartPrice.Text, out _))
             {
-                MessageBox.Show("Enter a valid number for Max.");
-                addPartMax.Text = "";
-                addPartMax.Focus();
-            }
-
-            // Validate Min is an integer
-            if (!int.TryParse(addPartMin.Text, out _))
-            {
-                MessageBox.Show("Enter a valid number for Min.");
-                addPartMin.Text = "";
-                addPartMin.Focus();
+                MessageBox.Show("Error: Price must be a decimal value.");
+                addPartPrice.Text = "";
+                addPartPrice.Focus();
             }
         }
 
@@ -137,14 +110,9 @@ namespace InventorySystem_GarrettSmith
             // Validate Max is an integer
             if (!int.TryParse(addPartMax.Text, out _))
             {
-                MessageBox.Show("Enter a valid number for Max.");
+                MessageBox.Show("Error: Enter a valid number for Max.");
                 addPartMax.Text = "";
                 addPartMax.Focus();
-            }
-            // Validate Max is greater than Min
-            if(addPartMax.TabIndex > addPartMin.TabIndex)
-            {
-                MaxMinEvaluation();
             }
         }
 
@@ -153,47 +121,26 @@ namespace InventorySystem_GarrettSmith
             // Validate Min is an integer
             if (!int.TryParse(addPartMin.Text, out _))
             {
-                MessageBox.Show("Enter a valid number for Min.");
+                MessageBox.Show("Error: Enter a valid number for Min.");
                 addPartMin.Text = "";
                 addPartMin.Focus();
             }
-
-            // Validate Min is less than Max
-            if (addPartMin.TabIndex > addPartMax.TabIndex)
-            {
-                MaxMinEvaluation();
-            }
         }
 
-        private void MaxMinEvaluation()
+        private void AddPartMachineIDValidation(object sender, EventArgs e)
         {
-            if (addPartMax.Text != "" && addPartMin.Text != "")
-            {
-                if (int.Parse(addPartMax.Text) < int.Parse(addPartMin.Text))
-                {
-                    MessageBox.Show("Max must be greater than Min.");
-                    addPartMax.Text = "";
-                    addPartMin.Text = "";
-                }
-                InventoryInRange();
-            }
-            
+            //// Validate Min is an integer
+            //if (!int.TryParse(addPartMin.Text, out _) && inhouseRadio.Checked == true)
+            //{
+            //    MessageBox.Show("Error: Enter a valid number for Machine ID.");
+            //    textBox7.Text = "";
+            //    textBox7.Focus();
+            //}
         }
 
-        private void InventoryInRange()
+        private void AddPartCancel_Click(object sender, EventArgs e)
         {
-            if (addPartInventory.Text != "" && addPartMax.Text != "" && addPartMin.Text != "")
-            {
-                if (int.Parse(addPartInventory.Text) < int.Parse(addPartMin.Text) || int.Parse(addPartInventory.Text) > int.Parse(addPartMax.Text))
-                {
-                    MessageBox.Show("Inventory must be between Min and Max.");
-                    this.ActiveControl = null;
-                    //addPartInventory.Focus();
-
-                }
-            }
+            this.Close();
         }
-
-
     }
 }

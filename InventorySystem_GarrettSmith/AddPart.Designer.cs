@@ -141,6 +141,7 @@
             this.addPartPrice.Name = "addPartPrice";
             this.addPartPrice.Size = new System.Drawing.Size(198, 23);
             this.addPartPrice.TabIndex = 5;
+            this.addPartPrice.Leave += new System.EventHandler(this.AddPartPriceValidation);
             // 
             // label4
             // 
@@ -210,6 +211,7 @@
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(198, 23);
             this.textBox7.TabIndex = 8;
+            this.textBox7.Leave += new System.EventHandler(this.AddPartMachineIDValidation);
             // 
             // toggleLabel
             // 
