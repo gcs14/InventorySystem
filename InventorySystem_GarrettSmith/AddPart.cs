@@ -18,13 +18,13 @@ namespace InventorySystem_GarrettSmith
             InitializeComponent();
         }
 
-        private void inhouseRadio_CheckedChanged(object sender, EventArgs e)
+        private void InhouseRadio_CheckedChanged(object sender, EventArgs e)
         {
             toggleLabel.Text = "Machine ID";
             toggleLabel.Location = new Point(55, 355);
         }
 
-        private void outsourcedRadio_CheckedChanged(object sender, EventArgs e)
+        private void OutsourcedRadio_CheckedChanged(object sender, EventArgs e)
         {
             toggleLabel.Text = "Company Name";
             toggleLabel.Location = new Point(21, 356);
@@ -32,45 +32,18 @@ namespace InventorySystem_GarrettSmith
 
         private void AddPartSave_Click(object sender, EventArgs e)
         {
-            if (int.Parse(addPartMin.Text) > int.Parse(addPartMax.Text))
-            {
-                MessageBox.Show("Error: Max must be greater than Min.");
-                return;
-            }
-            if (int.Parse(addPartInventory.Text) > int.Parse(addPartMax.Text) || int.Parse(addPartInventory.Text) < int.Parse(addPartMin.Text))
-            {
-                MessageBox.Show("Error: Inventory stocked must be between Max and Min.");
-                return;
-            }
-            if (addPartFlexText.Text == "")
-            {
-                MessageBox.Show("Error: Machine ID or Company Name cannot be empty.");
-                return;
-            }
-            if (inhouseRadio.Checked == true && !int.TryParse(addPartFlexText.Text, out _))
-            {
-                MessageBox.Show("Error: Enter a valid number for Machine ID.");
-                addPartFlexText.Text = "";
-                return;
-            }
-            if (outsourcedRadio.Checked == true && int.TryParse(addPartFlexText.Text, out _))
-            {
-                MessageBox.Show("Error: Enter a company name not a number.");
-                addPartFlexText.Text = "";
-                return;
-            }
-
+            AddPartExceptions();
 
             if (inhouseRadio.Checked)
             {
                 Inventory.AddPart(new Inhouse(
                     Inventory.AllParts.Count + 1,
                     addPartName.Text,
-                    Convert.ToDecimal(addPartPrice.Text),
-                    Convert.ToInt32(addPartInventory.Text),
-                    Convert.ToInt32(addPartMin.Text),
-                    Convert.ToInt32(addPartMax.Text),
-                    Convert.ToInt32(addPartFlexText.Text)
+                    decimal.Parse(addPartPrice.Text),
+                    int.Parse(addPartInventory.Text),
+                    int.Parse(addPartMin.Text),
+                    int.Parse(addPartMax.Text),
+                    int.Parse(addPartFlexText.Text)
                     ));
             }
             else
@@ -78,14 +51,24 @@ namespace InventorySystem_GarrettSmith
                 Inventory.AddPart(new Outsourced(
                     Inventory.AllParts.Count + 1,
                     addPartName.Text,
-                    Convert.ToDecimal(addPartPrice.Text),
-                    Convert.ToInt32(addPartInventory.Text),
-                    Convert.ToInt32(addPartMin.Text),
-                    Convert.ToInt32(addPartMax.Text),
+                    decimal.Parse(addPartPrice.Text),
+                    int.Parse(addPartInventory.Text),
+                    int.Parse(addPartMin.Text),
+                    int.Parse(addPartMax.Text),
                     addPartFlexText.Text
                 ));
             }
             this.Close();
+        }
+
+        private void AddPartNameValidation(object sender, EventArgs e)
+        {
+            // Validate Name is not empty
+            if (addPartName.Text == "")
+            {
+                MessageBox.Show("Error: Enter a valid part name.");
+                addPartName.Focus();
+            }
         }
 
         private void AddPartInventoryValidation(object sender, EventArgs e)
@@ -129,6 +112,42 @@ namespace InventorySystem_GarrettSmith
                 MessageBox.Show("Error: Enter a valid number for Min.");
                 addPartMin.Text = "";
                 addPartMin.Focus();
+            }
+        }
+
+        private void AddPartExceptions()
+        {
+            if (addPartName.Text == "" || !int.TryParse(addPartFlexText.Text, out _))
+            {
+                MessageBox.Show("Error: Enter a valid part name.");
+                return;
+            }
+            if (int.Parse(addPartMin.Text) > int.Parse(addPartMax.Text))
+            {
+                MessageBox.Show("Error: Max must be greater than Min.");
+                return;
+            }
+            if (int.Parse(addPartInventory.Text) > int.Parse(addPartMax.Text) || int.Parse(addPartInventory.Text) < int.Parse(addPartMin.Text))
+            {
+                MessageBox.Show("Error: Inventory stocked must be between Max and Min.");
+                return;
+            }
+            if (addPartFlexText.Text == "")
+            {
+                MessageBox.Show("Error: Machine ID or Company Name cannot be empty.");
+                return;
+            }
+            if (inhouseRadio.Checked == true && !int.TryParse(addPartFlexText.Text, out _))
+            {
+                MessageBox.Show("Error: Enter a valid number for Machine ID.");
+                addPartFlexText.Text = "";
+                return;
+            }
+            if (outsourcedRadio.Checked == true && int.TryParse(addPartFlexText.Text, out _))
+            {
+                MessageBox.Show("Error: Enter a company name not a number.");
+                addPartFlexText.Text = "";
+                return;
             }
         }
 

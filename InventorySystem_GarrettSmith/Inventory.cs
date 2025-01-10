@@ -15,7 +15,6 @@ namespace InventorySystem_GarrettSmith
     {
         //+ <<prop>> Products: BindingList<Product>
         //+ <<prop>> AllParts: BindingList<Part>
-
         public static BindingList<Product> Products = new BindingList<Product>();
         public static BindingList<Part> AllParts = new BindingList<Part>();
 
@@ -54,8 +53,8 @@ namespace InventorySystem_GarrettSmith
             AllParts.Add(demoPart10);
 
             // demoProduct1 AssociatedParts
-            demoProduct1.AddAssociatedPart(demoPart2); 
-            demoProduct1.AddAssociatedPart(demoPart3); 
+            demoProduct1.AddAssociatedPart(demoPart2);
+            demoProduct1.AddAssociatedPart(demoPart3);
             demoProduct1.AddAssociatedPart(demoPart6);
             demoProduct1.AddAssociatedPart(demoPart10);
 
@@ -146,6 +145,19 @@ namespace InventorySystem_GarrettSmith
             return false;
         }
         //+ lookupPart(int) : Part
+        public Part LookupPart(int partNumber)
+        {
+            Part result = null;
+            foreach (Part part in Inventory.AllParts)
+            {
+                if (part.PartID == partNumber)
+                {
+                    result = part;
+                }
+            }
+            return result;
+        }
+
         //+ updatePart(int, Part) : void
         public static void UpdatePart(int PartID, Inhouse part)
         {

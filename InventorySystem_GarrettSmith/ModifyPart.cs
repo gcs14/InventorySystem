@@ -24,57 +24,57 @@ namespace InventorySystem_GarrettSmith
         string currentPartMax;
         string currentPartMachineID;
         string currentPartCompanyName;
-        string currentPartType;
 
         string currentText;
 
         public ModifyPart(Inhouse part)
         {
             InitializeComponent();
-            inhousePart = part;
-            modifyPartID.Text = part.PartID.ToString();
-            inhouseRadio.Checked = true;
-            currentPartType = part.GetType().ToString();
-            currentText = part.MachineID.ToString();
 
+            modifyPartID.Text = part.PartID.ToString();
             modifyPartName.Text = currentPartName = part.Name;
             modifyPartInventory.Text = currentPartInventory = part.InStock.ToString();
             modifyPartPrice.Text = currentPartPrice = part.Price.ToString();
             modifyPartMax.Text = currentPartMax = part.Max.ToString();
             modifyPartMin.Text = currentPartMin = part.Min.ToString();
             modifyPartFlexText.Text = currentPartMachineID = part.MachineID.ToString();
+
+            currentText = part.MachineID.ToString();
+            inhouseRadio.Checked = true;
+
+            inhousePart = part;
         }
 
         public ModifyPart(Outsourced part)
         {
             InitializeComponent();
-            outsourcedPart = part;
-            modifyPartID.Text = part.PartID.ToString();
-            currentText = part.CompanyName;
-            outsourcedRadio.Checked = true;
-            currentPartType = part.GetType().ToString();
-            
 
+            modifyPartID.Text = part.PartID.ToString();
             modifyPartName.Text = currentPartName = part.Name;
             modifyPartInventory.Text = currentPartInventory = part.InStock.ToString();
             modifyPartPrice.Text = currentPartPrice = part.Price.ToString();
             modifyPartMax.Text = currentPartMax = part.Max.ToString();
             modifyPartMin.Text = currentPartMin = part.Min.ToString();
             modifyPartFlexText.Text = currentPartCompanyName = part.CompanyName;
+
+            currentText = part.CompanyName;
+            outsourcedRadio.Checked = true;
+
+            outsourcedPart = part;
         }
 
         private void InhouseRadio_CheckedChanged(object sender, EventArgs e)
         {
             toggleLabel.Text = "Machine ID";
             toggleLabel.Location = new Point(55, 355);
-            
-            if(currentText != null)
+
+            if (currentText != null)
             {
                 if (!int.TryParse(modifyPartFlexText.Text, out _))
                 {
                     modifyPartFlexText.Text = "";
                 }
-                else 
+                else
                 {
                     modifyPartFlexText.Text = currentText;
                 }
@@ -85,7 +85,7 @@ namespace InventorySystem_GarrettSmith
         {
             toggleLabel.Text = "Company Name";
             toggleLabel.Location = new Point(21, 356);
-            
+
             if (currentText != null)
             {
                 if (int.TryParse(modifyPartFlexText.Text, out _))
@@ -101,42 +101,7 @@ namespace InventorySystem_GarrettSmith
 
         private void ModifyPartSave_Click(object sender, EventArgs e)
         {
-            if (int.Parse(modifyPartMin.Text) > int.Parse(modifyPartMax.Text))
-            {
-                MessageBox.Show("Error: Max must be greater than Min.");
-                return;
-            }
-           
-            if (int.Parse(modifyPartMin.Text) > int.Parse(modifyPartMax.Text))
-            {
-                MessageBox.Show("Error: Max must be greater than Min.");
-                modifyPartMax.Text = currentPartMax;
-                modifyPartMin.Text = currentPartMin;
-                return;
-            }
-            if (int.Parse(modifyPartInventory.Text) > int.Parse(modifyPartMax.Text) || int.Parse(modifyPartInventory.Text) < int.Parse(modifyPartMin.Text))
-            {
-                MessageBox.Show("Error: Inventory stocked must be between Max and Min.");
-                modifyPartInventory.Text = currentPartInventory;
-                return;
-            }
-            if (modifyPartFlexText.Text == "")
-            {
-                MessageBox.Show("Error: Machine ID or Company Name cannot be empty.");
-                return;
-            }
-            if (inhouseRadio.Checked == true && !int.TryParse(modifyPartFlexText.Text, out _))
-            {
-                MessageBox.Show("Error: Enter a valid number for Machine ID.");
-                modifyPartFlexText.Text = currentPartMachineID;
-                return;
-            }
-            if (outsourcedRadio.Checked == true && int.TryParse(modifyPartFlexText.Text, out _))
-            {
-                MessageBox.Show("Error: Enter a company name not a number.");
-                modifyPartFlexText.Text = currentPartCompanyName;
-                return;
-            }
+            ModifyPartExceptions();
 
             if (inhouseRadio.Checked)
             {
@@ -169,12 +134,29 @@ namespace InventorySystem_GarrettSmith
             this.Close();
         }
 
+        private void ModifyPartNameValidation(object sender, EventArgs e)
+        {
+            // Validate Name is not empty
+            if (modifyPartName.Text == "")
+            {
+                MessageBox.Show("Error: Enter a valid part name.");
+                modifyPartName.Text = currentPartName;
+                modifyPartName.Focus();
+            }
+        }
+
         private void ModifyPartInventoryValidation(object sender, EventArgs e)
         {
             // Validate Inventory is a integer
             if (!int.TryParse(modifyPartInventory.Text, out _))
             {
                 MessageBox.Show("Error: Enter a valid number for Inventory.");
+                modifyPartInventory.Text = currentPartInventory;
+                modifyPartInventory.Focus();
+            }
+            if (int.Parse(currentPartInventory) < 0)
+            {
+                MessageBox.Show("Error: Inventory must be 0 or greater.");
                 modifyPartInventory.Text = currentPartInventory;
                 modifyPartInventory.Focus();
             }
@@ -210,6 +192,51 @@ namespace InventorySystem_GarrettSmith
                 MessageBox.Show("Error: Enter a valid number for Min.");
                 modifyPartMin.Text = currentPartMin;
                 modifyPartMin.Focus();
+            }
+        }
+
+        private void ModifyPartExceptions()
+        {
+            if (modifyPartName.Text == "" || !int.TryParse(modifyPartFlexText.Text, out _))
+            {
+                MessageBox.Show("Error: Enter a valid part name.");
+                return;
+            }
+            if (int.Parse(modifyPartMin.Text) > int.Parse(modifyPartMax.Text))
+            {
+                MessageBox.Show("Error: Max must be greater than Min.");
+                return;
+            }
+
+            if (int.Parse(modifyPartMin.Text) > int.Parse(modifyPartMax.Text))
+            {
+                MessageBox.Show("Error: Max must be greater than Min.");
+                modifyPartMax.Text = currentPartMax;
+                modifyPartMin.Text = currentPartMin;
+                return;
+            }
+            if (int.Parse(modifyPartInventory.Text) > int.Parse(modifyPartMax.Text) || int.Parse(modifyPartInventory.Text) < int.Parse(modifyPartMin.Text))
+            {
+                MessageBox.Show("Error: Inventory stocked must be between Max and Min.");
+                modifyPartInventory.Text = currentPartInventory;
+                return;
+            }
+            if (modifyPartFlexText.Text == "")
+            {
+                MessageBox.Show("Error: Machine ID or Company Name cannot be empty.");
+                return;
+            }
+            if (inhouseRadio.Checked == true && !int.TryParse(modifyPartFlexText.Text, out _))
+            {
+                MessageBox.Show("Error: Enter a valid number for Machine ID.");
+                modifyPartFlexText.Text = currentPartMachineID;
+                return;
+            }
+            if (outsourcedRadio.Checked == true && int.TryParse(modifyPartFlexText.Text, out _))
+            {
+                MessageBox.Show("Error: Enter a company name not a number.");
+                modifyPartFlexText.Text = currentPartCompanyName;
+                return;
             }
         }
 
