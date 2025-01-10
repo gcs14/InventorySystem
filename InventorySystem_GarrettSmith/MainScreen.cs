@@ -95,21 +95,22 @@ namespace InventorySystem_GarrettSmith
 
         private void AddPart_Click(object sender, EventArgs e)
         {
-            new AddPartScreen().ShowDialog();
+            new AddPart().ShowDialog();
         }
 
         private void ModifyPart_Click(object sender, EventArgs e)
         {
             var selected = dgvParts.CurrentRow.DataBoundItem;
-            MessageBox.Show(selected.ToString());
+            //MessageBox.Show(selected.ToString());
             if (selected is Inhouse)
             {
-                new ModifyPartScreen((Inhouse)selected).ShowDialog();
+                new ModifyPart((Inhouse)selected).ShowDialog();
             }
             else
             {
-                new ModifyPartScreen((Outsourced)selected).ShowDialog();
+                new ModifyPart((Outsourced)selected).ShowDialog();
             }
+            SetPartsTable();
         }
 
         private void DeletePart_Click(object sender, EventArgs e)

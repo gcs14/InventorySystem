@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace InventorySystem_GarrettSmith
 {
-    public partial class AddPartScreen : Form
+    public partial class AddPart : Form
     {
-        public AddPartScreen()
+        public AddPart()
         {
             InitializeComponent();
         }
@@ -42,16 +42,21 @@ namespace InventorySystem_GarrettSmith
                 MessageBox.Show("Error: Inventory stocked must be between Max and Min.");
                 return;
             }
-            if (inhouseRadio.Checked == true && !int.TryParse(textBox7.Text, out _))
+            if (addPartFlexText.Text == "")
             {
-                MessageBox.Show("Error: Enter a valid number for Machine ID.");
-                textBox7.Text = "";
+                MessageBox.Show("Error: Machine ID or Company Name cannot be empty.");
                 return;
             }
-            if (outsourcedRadio.Checked == true && int.TryParse(textBox7.Text, out _))
+            if (inhouseRadio.Checked == true && !int.TryParse(addPartFlexText.Text, out _))
+            {
+                MessageBox.Show("Error: Enter a valid number for Machine ID.");
+                addPartFlexText.Text = "";
+                return;
+            }
+            if (outsourcedRadio.Checked == true && int.TryParse(addPartFlexText.Text, out _))
             {
                 MessageBox.Show("Error: Enter a company name not a number.");
-                textBox7.Text = "";
+                addPartFlexText.Text = "";
                 return;
             }
 
@@ -65,7 +70,7 @@ namespace InventorySystem_GarrettSmith
                     Convert.ToInt32(addPartInventory.Text),
                     Convert.ToInt32(addPartMin.Text),
                     Convert.ToInt32(addPartMax.Text),
-                    Convert.ToInt32(textBox7.Text)
+                    Convert.ToInt32(addPartFlexText.Text)
                     ));
             }
             else
@@ -77,7 +82,7 @@ namespace InventorySystem_GarrettSmith
                     Convert.ToInt32(addPartInventory.Text),
                     Convert.ToInt32(addPartMin.Text),
                     Convert.ToInt32(addPartMax.Text),
-                    textBox7.Text
+                    addPartFlexText.Text
                 ));
             }
             this.Close();
@@ -125,17 +130,6 @@ namespace InventorySystem_GarrettSmith
                 addPartMin.Text = "";
                 addPartMin.Focus();
             }
-        }
-
-        private void AddPartMachineIDValidation(object sender, EventArgs e)
-        {
-            //// Validate Min is an integer
-            //if (!int.TryParse(addPartMin.Text, out _) && inhouseRadio.Checked == true)
-            //{
-            //    MessageBox.Show("Error: Enter a valid number for Machine ID.");
-            //    textBox7.Text = "";
-            //    textBox7.Focus();
-            //}
         }
 
         private void AddPartCancel_Click(object sender, EventArgs e)

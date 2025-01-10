@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -120,7 +122,6 @@ namespace InventorySystem_GarrettSmith
                     p.InStock = product.InStock;
                     p.Min = product.Min;
                     p.Max = product.Max;
-                    //p.AssociatedParts = product.AssociatedParts;
                 }
             }
         }
@@ -146,5 +147,22 @@ namespace InventorySystem_GarrettSmith
         }
         //+ lookupPart(int) : Part
         //+ updatePart(int, Part) : void
+        public static void UpdatePart(int PartID, Inhouse part)
+        {
+            int index = PartID - 1;
+            if (part.PartID == PartID)
+            {
+                AllParts[index] = part;
+            }
+        }
+
+        public static void UpdatePart(int PartID, Outsourced part)
+        {
+            int index = PartID - 1;
+            if (part.PartID == AllParts[index].PartID)
+            {
+                AllParts[index] = part;
+            }
+        }
     }
 }

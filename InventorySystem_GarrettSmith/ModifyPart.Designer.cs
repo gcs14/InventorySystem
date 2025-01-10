@@ -1,6 +1,6 @@
 ﻿namespace InventorySystem_GarrettSmith
 {
-    partial class ModifyPartScreen
+    partial class ModifyPart
     {
         /// <summary>
         /// Required designer variable.
@@ -38,7 +38,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.modifyPartMin = new System.Windows.Forms.TextBox();
             this.partIDLabel = new System.Windows.Forms.Label();
-            this.modifyFlexText = new System.Windows.Forms.TextBox();
+            this.modifyPartFlexText = new System.Windows.Forms.TextBox();
             this.modifyPartMax = new System.Windows.Forms.TextBox();
             this.modifyPartPrice = new System.Windows.Forms.TextBox();
             this.modifyPartInventory = new System.Windows.Forms.TextBox();
@@ -59,6 +59,7 @@
             this.button2.TabIndex = 29;
             this.button2.Text = "Cancel";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.ModifyPartCancel_Click);
             // 
             // button1
             // 
@@ -70,6 +71,7 @@
             this.button1.TabIndex = 28;
             this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.ModifyPartSave_Click);
             // 
             // label6
             // 
@@ -133,12 +135,14 @@
             // 
             // modifyPartMin
             // 
+            this.modifyPartMin.AcceptsReturn = true;
             this.modifyPartMin.AcceptsTab = true;
             this.modifyPartMin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.modifyPartMin.Location = new System.Drawing.Point(359, 303);
             this.modifyPartMin.Name = "modifyPartMin";
             this.modifyPartMin.Size = new System.Drawing.Size(86, 23);
             this.modifyPartMin.TabIndex = 26;
+            this.modifyPartMin.Leave += new System.EventHandler(this.ModifyPartMinValidation);
             // 
             // partIDLabel
             // 
@@ -150,44 +154,52 @@
             this.partIDLabel.TabIndex = 17;
             this.partIDLabel.Text = "ID";
             // 
-            // modifyFlexText
+            // modifyPartFlexText
             // 
-            this.modifyFlexText.AcceptsTab = true;
-            this.modifyFlexText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modifyFlexText.Location = new System.Drawing.Point(164, 355);
-            this.modifyFlexText.Name = "modifyFlexText";
-            this.modifyFlexText.Size = new System.Drawing.Size(198, 23);
-            this.modifyFlexText.TabIndex = 27;
+            this.modifyPartFlexText.AcceptsReturn = true;
+            this.modifyPartFlexText.AcceptsTab = true;
+            this.modifyPartFlexText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modifyPartFlexText.Location = new System.Drawing.Point(164, 355);
+            this.modifyPartFlexText.Name = "modifyPartFlexText";
+            this.modifyPartFlexText.Size = new System.Drawing.Size(198, 23);
+            this.modifyPartFlexText.TabIndex = 27;
             // 
             // modifyPartMax
             // 
+            this.modifyPartMax.AcceptsReturn = true;
             this.modifyPartMax.AcceptsTab = true;
             this.modifyPartMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.modifyPartMax.Location = new System.Drawing.Point(164, 303);
             this.modifyPartMax.Name = "modifyPartMax";
             this.modifyPartMax.Size = new System.Drawing.Size(86, 23);
             this.modifyPartMax.TabIndex = 25;
+            this.modifyPartMax.Leave += new System.EventHandler(this.ModifyPartMaxValidation);
             // 
             // modifyPartPrice
             // 
+            this.modifyPartPrice.AcceptsReturn = true;
             this.modifyPartPrice.AcceptsTab = true;
             this.modifyPartPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.modifyPartPrice.Location = new System.Drawing.Point(164, 253);
             this.modifyPartPrice.Name = "modifyPartPrice";
             this.modifyPartPrice.Size = new System.Drawing.Size(198, 23);
             this.modifyPartPrice.TabIndex = 24;
+            this.modifyPartPrice.Leave += new System.EventHandler(this.ModifyPartPriceValidation);
             // 
             // modifyPartInventory
             // 
+            this.modifyPartInventory.AcceptsReturn = true;
             this.modifyPartInventory.AcceptsTab = true;
             this.modifyPartInventory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.modifyPartInventory.Location = new System.Drawing.Point(164, 205);
             this.modifyPartInventory.Name = "modifyPartInventory";
             this.modifyPartInventory.Size = new System.Drawing.Size(198, 23);
             this.modifyPartInventory.TabIndex = 23;
+            this.modifyPartInventory.Leave += new System.EventHandler(this.ModifyPartInventoryValidation);
             // 
             // modifyPartName
             // 
+            this.modifyPartName.AcceptsReturn = true;
             this.modifyPartName.AcceptsTab = true;
             this.modifyPartName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.modifyPartName.Location = new System.Drawing.Point(164, 154);
@@ -215,7 +227,7 @@
             this.outsourcedRadio.TabStop = true;
             this.outsourcedRadio.Text = "Outsourced";
             this.outsourcedRadio.UseVisualStyleBackColor = true;
-            this.outsourcedRadio.CheckedChanged += new System.EventHandler(this.outsourcedRadio_CheckedChanged);
+            this.outsourcedRadio.CheckedChanged += new System.EventHandler(this.OutsourcedRadio_CheckedChanged);
             // 
             // inhouseRadio
             // 
@@ -228,7 +240,7 @@
             this.inhouseRadio.TabStop = true;
             this.inhouseRadio.Text = "In-House";
             this.inhouseRadio.UseVisualStyleBackColor = true;
-            this.inhouseRadio.CheckedChanged += new System.EventHandler(this.inhouseRadio_CheckedChanged);
+            this.inhouseRadio.CheckedChanged += new System.EventHandler(this.InhouseRadio_CheckedChanged);
             // 
             // ModifyPartLabel
             // 
@@ -240,7 +252,7 @@
             this.ModifyPartLabel.TabIndex = 11;
             this.ModifyPartLabel.Text = "Modify Part";
             // 
-            // ModifyPartScreen
+            // ModifyPart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -255,7 +267,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.modifyPartMin);
             this.Controls.Add(this.partIDLabel);
-            this.Controls.Add(this.modifyFlexText);
+            this.Controls.Add(this.modifyPartFlexText);
             this.Controls.Add(this.modifyPartMax);
             this.Controls.Add(this.modifyPartPrice);
             this.Controls.Add(this.modifyPartInventory);
@@ -264,7 +276,7 @@
             this.Controls.Add(this.outsourcedRadio);
             this.Controls.Add(this.inhouseRadio);
             this.Controls.Add(this.ModifyPartLabel);
-            this.Name = "ModifyPartScreen";
+            this.Name = "ModifyPart";
             this.Text = "ModifyPart";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -283,7 +295,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox modifyPartMin;
         private System.Windows.Forms.Label partIDLabel;
-        private System.Windows.Forms.TextBox modifyFlexText;
+        private System.Windows.Forms.TextBox modifyPartFlexText;
         private System.Windows.Forms.TextBox modifyPartMax;
         private System.Windows.Forms.TextBox modifyPartPrice;
         private System.Windows.Forms.TextBox modifyPartInventory;

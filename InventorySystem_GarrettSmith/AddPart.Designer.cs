@@ -1,6 +1,6 @@
 ﻿namespace InventorySystem_GarrettSmith
 {
-    partial class AddPartScreen
+    partial class AddPart
     {
         /// <summary>
         /// Required designer variable.
@@ -43,7 +43,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.addPartMin = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.addPartFlexText = new System.Windows.Forms.TextBox();
             this.toggleLabel = new System.Windows.Forms.Label();
             this.addPartSaveBtn = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -106,6 +106,7 @@
             // 
             // addPartName
             // 
+            this.addPartName.AcceptsReturn = true;
             this.addPartName.AcceptsTab = true;
             this.addPartName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addPartName.Location = new System.Drawing.Point(164, 154);
@@ -125,6 +126,7 @@
             // 
             // addPartInventory
             // 
+            this.addPartInventory.AcceptsReturn = true;
             this.addPartInventory.AcceptsTab = true;
             this.addPartInventory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addPartInventory.Location = new System.Drawing.Point(164, 205);
@@ -135,6 +137,7 @@
             // 
             // addPartPrice
             // 
+            this.addPartPrice.AcceptsReturn = true;
             this.addPartPrice.AcceptsTab = true;
             this.addPartPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addPartPrice.Location = new System.Drawing.Point(164, 253);
@@ -165,6 +168,7 @@
             // 
             // addPartMax
             // 
+            this.addPartMax.AcceptsReturn = true;
             this.addPartMax.AcceptsTab = true;
             this.addPartMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addPartMax.Location = new System.Drawing.Point(164, 303);
@@ -185,6 +189,7 @@
             // 
             // addPartMin
             // 
+            this.addPartMin.AcceptsReturn = true;
             this.addPartMin.AcceptsTab = true;
             this.addPartMin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addPartMin.Location = new System.Drawing.Point(359, 303);
@@ -203,15 +208,15 @@
             this.label6.TabIndex = 3;
             this.label6.Text = "Min";
             // 
-            // textBox7
+            // addPartFlexText
             // 
-            this.textBox7.AcceptsTab = true;
-            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox7.Location = new System.Drawing.Point(164, 355);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(198, 23);
-            this.textBox7.TabIndex = 8;
-            this.textBox7.Leave += new System.EventHandler(this.AddPartMachineIDValidation);
+            this.addPartFlexText.AcceptsReturn = true;
+            this.addPartFlexText.AcceptsTab = true;
+            this.addPartFlexText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addPartFlexText.Location = new System.Drawing.Point(164, 355);
+            this.addPartFlexText.Name = "addPartFlexText";
+            this.addPartFlexText.Size = new System.Drawing.Size(198, 23);
+            this.addPartFlexText.TabIndex = 8;
             // 
             // toggleLabel
             // 
@@ -247,7 +252,7 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.AddPartCancel_Click);
             // 
-            // AddPartScreen
+            // AddPart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -262,7 +267,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.addPartMin);
             this.Controls.Add(this.partIDLabel);
-            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.addPartFlexText);
             this.Controls.Add(this.addPartMax);
             this.Controls.Add(this.addPartPrice);
             this.Controls.Add(this.addPartInventory);
@@ -271,7 +276,7 @@
             this.Controls.Add(this.outsourcedRadio);
             this.Controls.Add(this.inhouseRadio);
             this.Controls.Add(this.AddPartLabel);
-            this.Name = "AddPartScreen";
+            this.Name = "AddPart";
             this.Text = "AddPart";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -295,7 +300,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox addPartMin;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox addPartFlexText;
         private System.Windows.Forms.Label toggleLabel;
         private System.Windows.Forms.Button addPartSaveBtn;
         private System.Windows.Forms.Button button2;
