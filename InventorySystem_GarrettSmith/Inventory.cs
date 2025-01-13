@@ -99,14 +99,15 @@ namespace InventorySystem_GarrettSmith
         //+ lookupProduct(int) : Product
         public Product LookupProduct(int productID)
         {
+            Product foundProduct = null;
             foreach (Product product in Products)
             {
                 if (product.ProductID == productID)
                 {
-                    return product;
+                    foundProduct = product;
                 }
             }
-            return null;
+            return foundProduct;
         }
 
         //+ updateProduct(int, Product) : void
@@ -147,15 +148,15 @@ namespace InventorySystem_GarrettSmith
         //+ lookupPart(int) : Part
         public Part LookupPart(int partNumber)
         {
-            Part result = null;
+            Part foundPart = null;
             foreach (Part part in Inventory.AllParts)
             {
                 if (part.PartID == partNumber)
                 {
-                    result = part;
+                    foundPart = part;
                 }
             }
-            return result;
+            return foundPart;
         }
 
         //+ updatePart(int, Part) : void

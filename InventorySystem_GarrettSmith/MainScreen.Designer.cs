@@ -223,6 +223,7 @@
             this.productDeleteBtn.TabIndex = 13;
             this.productDeleteBtn.Text = "Delete";
             this.productDeleteBtn.UseVisualStyleBackColor = true;
+            this.productDeleteBtn.Click += new System.EventHandler(this.DeleteProduct_Click);
             // 
             // MainScreenExit
             // 

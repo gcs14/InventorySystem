@@ -64,64 +64,6 @@ namespace InventorySystem_GarrettSmith
             partsSearchBar.Text = "";
         }
 
-        private List<Part> SearchPart(string keyword)
-        {
-            List<Part> results = new List<Part>();
-            foreach (Part part in Inventory.AllParts)
-            {
-                if (part.Name.ToLower().Contains(keyword.ToLower()))
-                {
-                    results.Add(part);
-                }
-            }
-            return results;
-        }
-
-        private void SearchPart_Click(object sender, EventArgs e)
-        {
-            string keyword = partsSearchBar.Text;
-            List<Part> results = new List<Part>();
-            if (partSearchComboBox.SelectedIndex == 1)
-            {
-                results = SearchPart(keyword);
-                if (results.Count > 0)
-                {
-                    dgvParts.DataSource = results;
-                }
-                else
-                {
-                    MessageBox.Show("Part(s) not found.");
-                }
-            }
-            else
-            {
-                Inventory inventory = new Inventory();
-                if (int.TryParse(keyword, out int x))
-                {
-                    int count = 0;
-                    foreach (Part p in Inventory.AllParts)
-                    {
-                        if (x == p.PartID)
-                        {
-                            results.Add(inventory.LookupPart(int.Parse(keyword)));
-                            dgvParts.DataSource = results;
-                            count++;
-                        }
-                    }
-                    if (count < 1)
-                    {
-                        MessageBox.Show("Part(s) not found.");
-                        dgvParts.DataSource = Inventory.AllParts;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Enter a valid Part ID number.");
-                    partsSearchBar.Text = "";
-                }
-            }
-        }
-
         private void AddPart_Click(object sender, EventArgs e)
         {
             new AddPart().ShowDialog();
@@ -152,6 +94,64 @@ namespace InventorySystem_GarrettSmith
             }
         }
 
+        private List<Part> SearchPart(string keyword)
+        {
+            List<Part> partResults = new List<Part>();
+            foreach (Part part in Inventory.AllParts)
+            {
+                if (part.Name.ToLower().Contains(keyword.ToLower()))
+                {
+                    partResults.Add(part);
+                }
+            }
+            return partResults;
+        }
+
+        private void SearchPart_Click(object sender, EventArgs e)
+        {
+            string keyword = partsSearchBar.Text;
+            List<Part> partResults = new List<Part>();
+            if (partSearchComboBox.SelectedIndex == 1)
+            {
+                partResults = SearchPart(keyword);
+                if (partResults.Count > 0)
+                {
+                    dgvParts.DataSource = partResults;
+                }
+                else
+                {
+                    MessageBox.Show("Part(s) not found.");
+                }
+            }
+            else
+            {
+                Inventory inventory = new Inventory();
+                if (int.TryParse(keyword, out int x))
+                {
+                    int count = 0;
+                    foreach (Part p in Inventory.AllParts)
+                    {
+                        if (x == p.PartID)
+                        {
+                            partResults.Add(inventory.LookupPart(int.Parse(keyword)));
+                            dgvParts.DataSource = partResults;
+                            count++;
+                        }
+                    }
+                    if (count < 1)
+                    {
+                        MessageBox.Show("Part(s) not found.");
+                        dgvParts.DataSource = Inventory.AllParts;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Enter a valid Part ID number.");
+                    partsSearchBar.Text = "";
+                }
+            }
+        }
+
         private List<Product> SearchProduct(string keyword)
         {
             List<Product> productResults = new List<Product>();
@@ -168,14 +168,45 @@ namespace InventorySystem_GarrettSmith
         private void SearchProduct_Click(object sender, EventArgs e)
         {
             string keyword = productsSearchBar.Text;
-            List<Product> productResults = SearchProduct(keyword);
-            if (productResults.Count > 0)
+            List<Product> productResults = new List<Product>();
+            if (productSearchComboBox.SelectedIndex == 1)
             {
-                dgvProducts.DataSource = productResults;
+                productResults = SearchProduct(keyword);
+                if (productResults.Count > 0)
+                {
+                    dgvProducts.DataSource = productResults;
+                }
+                else
+                {
+                    MessageBox.Show("Product(s) not found.");
+                }
             }
             else
             {
-                MessageBox.Show("Product(s) not found.");
+                Inventory productInventory = new Inventory();
+                if (int.TryParse(keyword, out int x))
+                {
+                    int count = 0;
+                    foreach (Product p in Inventory.Products)
+                    {
+                        if (x == p.ProductID)
+                        {
+                            productResults.Add(productInventory.LookupProduct(int.Parse(keyword)));
+                            dgvProducts.DataSource = productResults;
+                            count++;
+                        }
+                    }
+                    if (count < 1)
+                    {
+                        MessageBox.Show("Product(s) not found.");
+                        dgvProducts.DataSource = Inventory.Products;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Enter a valid Product ID number.");
+                    partsSearchBar.Text = "";
+                }
             }
         }
 
@@ -183,6 +214,18 @@ namespace InventorySystem_GarrettSmith
         {
             Product selectedProduct = (Product)dgvProducts.CurrentRow.DataBoundItem;
             new AddProductScreen().ShowDialog();
+        }
+
+        private void DeleteProduct_Click(object sender, EventArgs e)
+        {
+            Inventory inventory = new Inventory();
+            DialogResult confirm = MessageBox.Show("Are you sure want to delete this product?", "WARNING", MessageBoxButtons.YesNo);
+            if (confirm == DialogResult.Yes)
+            {
+                Product selectedProduct = (Product)dgvProducts.CurrentRow.DataBoundItem;
+                inventory.RemoveProduct(selectedProduct.ProductID);
+                MessageBox.Show("Product successfully deleted.");
+            }
         }
 
         private void MainScreenExit_Click(object sender, EventArgs e)
