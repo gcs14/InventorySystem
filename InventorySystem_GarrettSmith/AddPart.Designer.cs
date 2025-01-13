@@ -32,7 +32,7 @@
             this.inhouseRadio = new System.Windows.Forms.RadioButton();
             this.outsourcedRadio = new System.Windows.Forms.RadioButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.AddPartIDLabel = new System.Windows.Forms.Label();
+            this.addPartIDLabel = new System.Windows.Forms.Label();
             this.addPartName = new System.Windows.Forms.TextBox();
             this.addPartNameLabel = new System.Windows.Forms.Label();
             this.addPartInventory = new System.Windows.Forms.TextBox();
@@ -94,15 +94,15 @@
             this.textBox1.Size = new System.Drawing.Size(198, 23);
             this.textBox1.TabIndex = 2;
             // 
-            // AddPartIDLabel
+            // addPartIDLabel
             // 
-            this.AddPartIDLabel.AutoSize = true;
-            this.AddPartIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddPartIDLabel.Location = new System.Drawing.Point(115, 108);
-            this.AddPartIDLabel.Name = "AddPartIDLabel";
-            this.AddPartIDLabel.Size = new System.Drawing.Size(22, 18);
-            this.AddPartIDLabel.TabIndex = 3;
-            this.AddPartIDLabel.Text = "ID";
+            this.addPartIDLabel.AutoSize = true;
+            this.addPartIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addPartIDLabel.Location = new System.Drawing.Point(115, 108);
+            this.addPartIDLabel.Name = "addPartIDLabel";
+            this.addPartIDLabel.Size = new System.Drawing.Size(22, 18);
+            this.addPartIDLabel.TabIndex = 3;
+            this.addPartIDLabel.Text = "ID";
             // 
             // addPartName
             // 
@@ -134,7 +134,6 @@
             this.addPartInventory.Name = "addPartInventory";
             this.addPartInventory.Size = new System.Drawing.Size(198, 23);
             this.addPartInventory.TabIndex = 4;
-            this.addPartInventory.Leave += new System.EventHandler(this.AddPartInventoryValidation);
             // 
             // addPartPrice
             // 
@@ -145,7 +144,6 @@
             this.addPartPrice.Name = "addPartPrice";
             this.addPartPrice.Size = new System.Drawing.Size(198, 23);
             this.addPartPrice.TabIndex = 5;
-            this.addPartPrice.Leave += new System.EventHandler(this.AddPartPriceValidation);
             // 
             // addPartInventoryLabel
             // 
@@ -176,7 +174,6 @@
             this.addPartMax.Name = "addPartMax";
             this.addPartMax.Size = new System.Drawing.Size(86, 23);
             this.addPartMax.TabIndex = 6;
-            this.addPartMax.Leave += new System.EventHandler(this.AddPartMaxValidation);
             // 
             // addPartMaxLabel
             // 
@@ -197,7 +194,6 @@
             this.addPartMin.Name = "addPartMin";
             this.addPartMin.Size = new System.Drawing.Size(86, 23);
             this.addPartMin.TabIndex = 7;
-            this.addPartMin.Leave += new System.EventHandler(this.AddPartMinValidation);
             // 
             // addPartMinLabel
             // 
@@ -218,6 +214,7 @@
             this.addPartFlexText.Name = "addPartFlexText";
             this.addPartFlexText.Size = new System.Drawing.Size(198, 23);
             this.addPartFlexText.TabIndex = 8;
+            this.addPartFlexText.Leave += new System.EventHandler(this.AddPartMachineIDValidation);
             // 
             // toggleLabel
             // 
@@ -267,7 +264,7 @@
             this.Controls.Add(this.addPartNameLabel);
             this.Controls.Add(this.addPartInventoryLabel);
             this.Controls.Add(this.addPartMin);
-            this.Controls.Add(this.AddPartIDLabel);
+            this.Controls.Add(this.addPartIDLabel);
             this.Controls.Add(this.addPartFlexText);
             this.Controls.Add(this.addPartMax);
             this.Controls.Add(this.addPartPrice);
@@ -290,7 +287,7 @@
         private System.Windows.Forms.RadioButton inhouseRadio;
         private System.Windows.Forms.RadioButton outsourcedRadio;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label AddPartIDLabel;
+        private System.Windows.Forms.Label addPartIDLabel;
         private System.Windows.Forms.TextBox addPartName;
         private System.Windows.Forms.Label addPartNameLabel;
         private System.Windows.Forms.TextBox addPartInventory;

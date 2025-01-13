@@ -10,7 +10,7 @@ namespace InventorySystem_GarrettSmith.model
 {
     internal class Product
     {
-        public static BindingList<Part> AssociatedParts = new BindingList<Part>();
+        public BindingList<Part> AssociatedParts = new BindingList<Part>();
         public int ProductID { get; set; }
         public string Name { get; set; }
         public int InStock { get; set; }
@@ -31,9 +31,38 @@ namespace InventorySystem_GarrettSmith.model
             Max = max;
         }
 
+        //+ addAssociatedPart(Part) : void
         public void AddAssociatedPart(Part part)
         {
             AssociatedParts.Add(part);
+        }
+
+        //+ removeAssociatedPart(int) : bool
+        public bool RemoveAssociatedPart(int partID)
+        {
+            foreach (Part part in AssociatedParts)
+            {
+                if (part.PartID == partID)
+                {
+                    AssociatedParts.Remove(part);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        //+ lookupAssociatedPart(int) : Part
+        public Part lookupAssociatedPart(int partID)
+        {
+            Part foundPart = null;
+            foreach (Part part in AssociatedParts)
+            {
+                if (part.PartID == partID)
+                {
+                    foundPart = part;
+                }
+            }
+            return foundPart;
         }
     }
 }

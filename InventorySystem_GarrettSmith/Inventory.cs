@@ -146,12 +146,12 @@ namespace InventorySystem_GarrettSmith
             return false;
         }
         //+ lookupPart(int) : Part
-        public Part LookupPart(int partNumber)
+        public Part LookupPart(int partID)
         {
             Part foundPart = null;
             foreach (Part part in Inventory.AllParts)
             {
-                if (part.PartID == partNumber)
+                if (part.PartID == partID)
                 {
                     foundPart = part;
                 }
