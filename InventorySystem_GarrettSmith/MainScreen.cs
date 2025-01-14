@@ -216,6 +216,12 @@ namespace InventorySystem_GarrettSmith
             new AddProductScreen().ShowDialog();
         }
 
+        private void ModifyProduct_Click(object sender, EventArgs e)
+        {
+            Product selectedProduct = (Product)dgvProducts.CurrentRow.DataBoundItem;
+            new ModifyProduct(selectedProduct).ShowDialog();
+        }
+
         private void DeleteProduct_Click(object sender, EventArgs e)
         {
             Inventory inventory = new Inventory();

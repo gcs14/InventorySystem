@@ -26,15 +26,6 @@ namespace InventorySystem_GarrettSmith
         private void AddProduct_Load(object sender, EventArgs e)
         {
             SetCandidatePartsTable();
-            dgvAddCandidateParts.Columns["PartID"].HeaderText = "Part ID";
-            dgvAddCandidateParts.Columns["Name"].HeaderText = "Name";
-            dgvAddCandidateParts.Columns["InStock"].HeaderText = "Inventory Level";
-            dgvAddCandidateParts.Columns["Price"].HeaderText = "Price";
-
-            dgvAddCandidateParts.Columns["PartID"].HeaderText = "Part ID";
-            dgvAddCandidateParts.Columns["Name"].HeaderText = "Name";
-            dgvAddCandidateParts.Columns["InStock"].HeaderText = "Inventory Level";
-            dgvAddCandidateParts.Columns["Price"].HeaderText = "Price";
         }
 
         private void SetCandidatePartsTable()
@@ -42,13 +33,24 @@ namespace InventorySystem_GarrettSmith
             var bsCandidateParts = new BindingSource();
             bsCandidateParts.DataSource = Inventory.AllParts;
             dgvAddCandidateParts.DataSource = bsCandidateParts;
+
+            dgvAddCandidateParts.Columns["PartID"].HeaderText = "Part ID";
+            dgvAddCandidateParts.Columns["Name"].HeaderText = "Name";
+            dgvAddCandidateParts.Columns["InStock"].HeaderText = "Inventory Level";
+            dgvAddCandidateParts.Columns["Price"].HeaderText = "Price";
         }
 
         private void SetAssocPartsTable(Product p)
         {
             var bsAssocParts = new BindingSource();
-            bsAssocParts.DataSource = p.AssociatedParts.OrderBy(part => part.PartID);
+            //bsAssocParts.DataSource = p.AssociatedParts.OrderBy(part => part.PartID);
+            bsAssocParts.DataSource = p.AssociatedParts;
             dgvAddAssocParts.DataSource = bsAssocParts;
+
+            dgvAddAssocParts.Columns["PartID"].HeaderText = "Part ID";
+            dgvAddAssocParts.Columns["Name"].HeaderText = "Name";
+            dgvAddAssocParts.Columns["InStock"].HeaderText = "Inventory Level";
+            dgvAddAssocParts.Columns["Price"].HeaderText = "Price";
         }
 
         private void AddCandidatePart_Click(object sender, EventArgs e)
@@ -65,7 +67,7 @@ namespace InventorySystem_GarrettSmith
             }
         }
 
-        private void DeleteAssocPart_Click(object sender, EventArgs e)
+        private void ModifyDeleteAssocPart_Click(object sender, EventArgs e)
         {
             Part selectedPart = (Part)dgvAddAssocParts.CurrentRow.DataBoundItem;
             product.RemoveAssociatedPart(selectedPart.PartID);

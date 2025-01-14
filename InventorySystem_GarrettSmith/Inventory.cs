@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO.Ports;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -17,6 +18,8 @@ namespace InventorySystem_GarrettSmith
         //+ <<prop>> AllParts: BindingList<Part>
         public static BindingList<Product> Products = new BindingList<Product>();
         public static BindingList<Part> AllParts = new BindingList<Part>();
+        //public static List<string> MachineIDs = new List<string>();
+        public static Dictionary<int, int> MachineIDs = new Dictionary<int, int>();
 
         public static void GenerateDemoData()
         {
@@ -30,16 +33,16 @@ namespace InventorySystem_GarrettSmith
             Products.Add(demoProduct3);
             Products.Add(demoProduct4);
 
-            Part demoPart1 = new Outsourced(1, "GeForce RTX 4070", 549.99m, 8, 5, 15, "Nvidia");
-            Part demoPart2 = new Outsourced(2, "GeForce RTX 4060 Ti", 449.99m, 13, 5, 15, "Nvidia");
-            Part demoPart3 = new Outsourced(3, "Ryzen 7 8700G", 279.00m, 10, 5, 20, "AMD");
-            Part demoPart4 = new Outsourced(4, "Intel Core i5 13400F", 151.21m, 20, 10, 50, "Intel");
-            Part demoPart5 = new Outsourced(5, "Intel Core i7-14700KF", 399.99m, 7, 10, 25, "Intel");
-            Part demoPart6 = new Outsourced(6, "Vengeance 8GB", 27.99m, 40, 25, 200, "Corsair");
-            Part demoPart7 = new Outsourced(7, "Vengeance 16GB", 54.99m, 60, 25, 200, "Corsair");
-            Part demoPart8 = new Inhouse(8, "MAG X670E", 99.99m, 30, 25, 200, 1);
-            Part demoPart9 = new Inhouse(9, "MAG B550M Bazooka", 79.99m, 20, 15, 100, 2);
-            Part demoPart10 = new Inhouse(10, "MAG B550 Tomahawk", 129.99m, 15, 10, 50, 3);
+            Outsourced demoPart1 = new Outsourced(1, "GeForce RTX 4070", 549.99m, 8, 5, 15, "Nvidia");
+            Outsourced demoPart2 = new Outsourced(2, "GeForce RTX 4060 Ti", 449.99m, 13, 5, 15, "Nvidia");
+            Outsourced demoPart3 = new Outsourced(3, "Ryzen 7 8700G", 279.00m, 10, 5, 20, "AMD");
+            Outsourced demoPart4 = new Outsourced(4, "Intel Core i5 13400F", 151.21m, 20, 10, 50, "Intel");
+            Outsourced demoPart5 = new Outsourced(5, "Intel Core i7-14700KF", 399.99m, 7, 10, 25, "Intel");
+            Outsourced demoPart6 = new Outsourced(6, "Vengeance 8GB", 27.99m, 40, 25, 200, "Corsair");
+            Outsourced demoPart7 = new Outsourced(7, "Vengeance 16GB", 54.99m, 60, 25, 200, "Corsair");
+            Inhouse demoPart8 = new Inhouse(8, "MAG X670E", 99.99m, 30, 25, 200, 1);
+            Inhouse demoPart9 = new Inhouse(9, "MAG B550M Bazooka", 79.99m, 20, 15, 100, 2);
+            Inhouse demoPart10 = new Inhouse(10, "MAG B550 Tomahawk", 129.99m, 15, 10, 50, 3);
 
             AllParts.Add(demoPart1);
             AllParts.Add(demoPart2);
@@ -59,21 +62,25 @@ namespace InventorySystem_GarrettSmith
             demoProduct1.AddAssociatedPart(demoPart10);
 
             // demoProduct2 AssociatedParts
-            demoProduct1.AddAssociatedPart(demoPart5);
-            demoProduct1.AddAssociatedPart(demoPart7);
-            demoProduct1.AddAssociatedPart(demoPart8);
+            demoProduct2.AddAssociatedPart(demoPart5);
+            demoProduct2.AddAssociatedPart(demoPart7);
+            demoProduct2.AddAssociatedPart(demoPart8);
 
             // demoProduct3 AssociatedParts
-            demoProduct1.AddAssociatedPart(demoPart1);
-            demoProduct1.AddAssociatedPart(demoPart3);
-            demoProduct1.AddAssociatedPart(demoPart7);
-            demoProduct1.AddAssociatedPart(demoPart8);
+            demoProduct3.AddAssociatedPart(demoPart1);
+            demoProduct3.AddAssociatedPart(demoPart3);
+            demoProduct3.AddAssociatedPart(demoPart7);
+            demoProduct3.AddAssociatedPart(demoPart8);
 
             // demoProduct4 AssociatedParts
-            demoProduct1.AddAssociatedPart(demoPart2);
-            demoProduct1.AddAssociatedPart(demoPart4);
-            demoProduct1.AddAssociatedPart(demoPart7);
-            demoProduct1.AddAssociatedPart(demoPart8);
+            demoProduct4.AddAssociatedPart(demoPart2);
+            demoProduct4.AddAssociatedPart(demoPart4);
+            demoProduct4.AddAssociatedPart(demoPart7);
+            demoProduct4.AddAssociatedPart(demoPart8);
+
+            MachineIDs.Add(demoPart8.PartID, demoPart8.MachineID);
+            MachineIDs.Add(demoPart9.PartID, demoPart9.MachineID);
+            MachineIDs.Add(demoPart10.PartID, demoPart10.MachineID);
         }
 
         //+ addProduct(Product) : void
@@ -113,16 +120,10 @@ namespace InventorySystem_GarrettSmith
         //+ updateProduct(int, Product) : void
         public void UpdateProduct(int ProductID, Product product)
         {
-            foreach (Product p in Products)
+            int index = ProductID - 1;
+            if (product.ProductID == ProductID)
             {
-                if (p.ProductID == ProductID)
-                {
-                    p.Name = product.Name;
-                    p.Price = product.Price;
-                    p.InStock = product.InStock;
-                    p.Min = product.Min;
-                    p.Max = product.Max;
-                }
+                Products[index] = product;
             }
         }
 
@@ -166,6 +167,7 @@ namespace InventorySystem_GarrettSmith
             if (part.PartID == PartID)
             {
                 AllParts[index] = part;
+                MachineIDs[PartID] = part.MachineID;
             }
         }
 

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace InventorySystem_GarrettSmith
 {
@@ -36,8 +37,9 @@ namespace InventorySystem_GarrettSmith
             {
                 if (inhouseRadio.Checked)
                 {
+                    int id = Inventory.AllParts.Count + 1;
                     Inventory.AddPart(new Inhouse(
-                        Inventory.AllParts.Count + 1,
+                        id,
                         addPartName.Text,
                         decimal.Parse(addPartPrice.Text),
                         int.Parse(addPartInventory.Text),
@@ -45,6 +47,7 @@ namespace InventorySystem_GarrettSmith
                         int.Parse(addPartMax.Text),
                         int.Parse(addPartFlexText.Text)
                         ));
+                    Inventory.MachineIDs.Add(id, int.Parse(addPartFlexText.Text));
                 }
                 else
                 {
@@ -75,9 +78,9 @@ namespace InventorySystem_GarrettSmith
 
         private void AddPartMachineIDValidation(object sender, EventArgs e)
         {
-            foreach (Inhouse inhousePart in Inventory.AllParts.Cast<Inhouse>())
+            if (inhouseRadio.Checked)
             {
-                if (inhousePart.MachineID.Equals(addPartFlexText.Text))
+                if (int.TryParse(addPartFlexText.Text, out _) && Inventory.MachineIDs.ContainsValue(int.Parse(addPartFlexText.Text)))
                 {
                     MessageBox.Show("Error: A part already exists with that machine ID.");
                 }

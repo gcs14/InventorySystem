@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace InventorySystem_GarrettSmith.model
 {
-    internal class Product
+    public class Product
     {
         public BindingList<Part> AssociatedParts = new BindingList<Part>();
         public int ProductID { get; set; }
@@ -30,6 +30,19 @@ namespace InventorySystem_GarrettSmith.model
             Min = min;
             Max = max;
         }
+
+        public Product(BindingList<Part> associatedParts, int productID, string name, int inStock, decimal price, int min, int max)
+        {
+            AssociatedParts = associatedParts;
+            ProductID = productID;
+            Name = name;
+            InStock = inStock;
+            Price = price;
+            Min = min;
+            Max = max;
+        }
+
+
 
         //+ addAssociatedPart(Part) : void
         public void AddAssociatedPart(Part part)

@@ -223,7 +223,7 @@
             this.addAssocPart_deleteBtn.TabIndex = 28;
             this.addAssocPart_deleteBtn.Text = "Delete";
             this.addAssocPart_deleteBtn.UseVisualStyleBackColor = true;
-            this.addAssocPart_deleteBtn.Click += new System.EventHandler(this.DeleteAssocPart_Click);
+            this.addAssocPart_deleteBtn.Click += new System.EventHandler(this.ModifyDeleteAssocPart_Click);
             // 
             // addCandidatePart_addBtn
             // 

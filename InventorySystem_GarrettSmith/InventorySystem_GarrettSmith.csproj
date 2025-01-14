@@ -76,6 +76,12 @@
     <Compile Include="ModifyPart.Designer.cs">
       <DependentUpon>ModifyPart.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModifyProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModifyProduct.Designer.cs">
+      <DependentUpon>ModifyProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddPart.resx">
@@ -89,6 +95,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ModifyPart.resx">
       <DependentUpon>ModifyPart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModifyProduct.resx">
+      <DependentUpon>ModifyProduct.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

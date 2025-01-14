@@ -58,7 +58,7 @@
             this.mainScreenLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mainScreenLabel.Location = new System.Drawing.Point(6, 9);
             this.mainScreenLabel.Name = "mainScreenLabel";
-            this.mainScreenLabel.Size = new System.Drawing.Size(389, 31);
+            this.mainScreenLabel.Size = new System.Drawing.Size(486, 39);
             this.mainScreenLabel.TabIndex = 0;
             this.mainScreenLabel.Text = "Inventory Management System";
             // 
@@ -72,6 +72,7 @@
             this.dgvParts.Name = "dgvParts";
             this.dgvParts.ReadOnly = true;
             this.dgvParts.RowHeadersVisible = false;
+            this.dgvParts.RowHeadersWidth = 51;
             this.dgvParts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvParts.Size = new System.Drawing.Size(548, 394);
             this.dgvParts.TabIndex = 3;
@@ -87,6 +88,7 @@
             this.dgvProducts.Name = "dgvProducts";
             this.dgvProducts.ReadOnly = true;
             this.dgvProducts.RowHeadersVisible = false;
+            this.dgvProducts.RowHeadersWidth = 51;
             this.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProducts.Size = new System.Drawing.Size(529, 394);
             this.dgvProducts.TabIndex = 10;
@@ -98,7 +100,7 @@
             this.partsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.partsLabel.Location = new System.Drawing.Point(7, 77);
             this.partsLabel.Name = "partsLabel";
-            this.partsLabel.Size = new System.Drawing.Size(63, 26);
+            this.partsLabel.Size = new System.Drawing.Size(78, 31);
             this.partsLabel.TabIndex = 0;
             this.partsLabel.Text = "Parts";
             // 
@@ -108,7 +110,7 @@
             this.productsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.productsLabel.Location = new System.Drawing.Point(585, 77);
             this.productsLabel.Name = "productsLabel";
-            this.productsLabel.Size = new System.Drawing.Size(98, 26);
+            this.productsLabel.Size = new System.Drawing.Size(122, 31);
             this.productsLabel.TabIndex = 0;
             this.productsLabel.Text = "Products";
             // 
@@ -118,7 +120,7 @@
             this.partsSearchBar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.partsSearchBar.Location = new System.Drawing.Point(274, 77);
             this.partsSearchBar.Name = "partsSearchBar";
-            this.partsSearchBar.Size = new System.Drawing.Size(205, 23);
+            this.partsSearchBar.Size = new System.Drawing.Size(205, 26);
             this.partsSearchBar.TabIndex = 1;
             // 
             // productsSearchBar
@@ -127,7 +129,7 @@
             this.productsSearchBar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.productsSearchBar.Location = new System.Drawing.Point(835, 77);
             this.productsSearchBar.Name = "productsSearchBar";
-            this.productsSearchBar.Size = new System.Drawing.Size(205, 23);
+            this.productsSearchBar.Size = new System.Drawing.Size(205, 26);
             this.productsSearchBar.TabIndex = 8;
             // 
             // partsSearchBtn
@@ -136,7 +138,7 @@
             this.partsSearchBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.partsSearchBtn.Location = new System.Drawing.Point(485, 75);
             this.partsSearchBtn.Name = "partsSearchBtn";
-            this.partsSearchBtn.Size = new System.Drawing.Size(75, 27);
+            this.partsSearchBtn.Size = new System.Drawing.Size(75, 30);
             this.partsSearchBtn.TabIndex = 2;
             this.partsSearchBtn.Text = "Search";
             this.partsSearchBtn.UseVisualStyleBackColor = true;
@@ -148,7 +150,7 @@
             this.productsSearchBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.productsSearchBtn.Location = new System.Drawing.Point(1046, 75);
             this.productsSearchBtn.Name = "productsSearchBtn";
-            this.productsSearchBtn.Size = new System.Drawing.Size(75, 27);
+            this.productsSearchBtn.Size = new System.Drawing.Size(75, 30);
             this.productsSearchBtn.TabIndex = 9;
             this.productsSearchBtn.Text = "Search";
             this.productsSearchBtn.UseVisualStyleBackColor = true;
@@ -160,7 +162,7 @@
             this.partAddBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.partAddBtn.Location = new System.Drawing.Point(265, 534);
             this.partAddBtn.Name = "partAddBtn";
-            this.partAddBtn.Size = new System.Drawing.Size(75, 27);
+            this.partAddBtn.Size = new System.Drawing.Size(75, 30);
             this.partAddBtn.TabIndex = 4;
             this.partAddBtn.Text = "Add";
             this.partAddBtn.UseVisualStyleBackColor = true;
@@ -172,7 +174,7 @@
             this.partModifyBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.partModifyBtn.Location = new System.Drawing.Point(374, 534);
             this.partModifyBtn.Name = "partModifyBtn";
-            this.partModifyBtn.Size = new System.Drawing.Size(75, 27);
+            this.partModifyBtn.Size = new System.Drawing.Size(75, 30);
             this.partModifyBtn.TabIndex = 5;
             this.partModifyBtn.Text = "Modify";
             this.partModifyBtn.UseVisualStyleBackColor = true;
@@ -184,7 +186,7 @@
             this.partDeleteBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.partDeleteBtn.Location = new System.Drawing.Point(485, 534);
             this.partDeleteBtn.Name = "partDeleteBtn";
-            this.partDeleteBtn.Size = new System.Drawing.Size(75, 27);
+            this.partDeleteBtn.Size = new System.Drawing.Size(75, 30);
             this.partDeleteBtn.TabIndex = 6;
             this.partDeleteBtn.Text = "Delete";
             this.partDeleteBtn.UseVisualStyleBackColor = true;
@@ -196,7 +198,7 @@
             this.productAddBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.productAddBtn.Location = new System.Drawing.Point(824, 534);
             this.productAddBtn.Name = "productAddBtn";
-            this.productAddBtn.Size = new System.Drawing.Size(75, 27);
+            this.productAddBtn.Size = new System.Drawing.Size(75, 30);
             this.productAddBtn.TabIndex = 11;
             this.productAddBtn.Text = "Add";
             this.productAddBtn.UseVisualStyleBackColor = true;
@@ -208,10 +210,11 @@
             this.productModifyBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.productModifyBtn.Location = new System.Drawing.Point(932, 534);
             this.productModifyBtn.Name = "productModifyBtn";
-            this.productModifyBtn.Size = new System.Drawing.Size(75, 27);
+            this.productModifyBtn.Size = new System.Drawing.Size(75, 30);
             this.productModifyBtn.TabIndex = 12;
             this.productModifyBtn.Text = "Modify";
             this.productModifyBtn.UseVisualStyleBackColor = true;
+            this.productModifyBtn.Click += new System.EventHandler(this.ModifyProduct_Click);
             // 
             // productDeleteBtn
             // 
@@ -219,7 +222,7 @@
             this.productDeleteBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.productDeleteBtn.Location = new System.Drawing.Point(1046, 534);
             this.productDeleteBtn.Name = "productDeleteBtn";
-            this.productDeleteBtn.Size = new System.Drawing.Size(75, 27);
+            this.productDeleteBtn.Size = new System.Drawing.Size(75, 30);
             this.productDeleteBtn.TabIndex = 13;
             this.productDeleteBtn.Text = "Delete";
             this.productDeleteBtn.UseVisualStyleBackColor = true;
@@ -243,7 +246,7 @@
             this.partsTableReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.partsTableReset.Location = new System.Drawing.Point(13, 534);
             this.partsTableReset.Name = "partsTableReset";
-            this.partsTableReset.Size = new System.Drawing.Size(75, 27);
+            this.partsTableReset.Size = new System.Drawing.Size(75, 30);
             this.partsTableReset.TabIndex = 7;
             this.partsTableReset.Text = "Reset";
             this.partsTableReset.UseVisualStyleBackColor = true;
@@ -255,7 +258,7 @@
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Location = new System.Drawing.Point(590, 534);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 27);
+            this.button2.Size = new System.Drawing.Size(75, 30);
             this.button2.TabIndex = 14;
             this.button2.Text = "Reset";
             this.button2.UseVisualStyleBackColor = true;
@@ -267,7 +270,7 @@
             this.partSearchComboBox.FormattingEnabled = true;
             this.partSearchComboBox.Location = new System.Drawing.Point(206, 76);
             this.partSearchComboBox.Name = "partSearchComboBox";
-            this.partSearchComboBox.Size = new System.Drawing.Size(62, 24);
+            this.partSearchComboBox.Size = new System.Drawing.Size(62, 28);
             this.partSearchComboBox.TabIndex = 16;
             // 
             // productSearchComboBox
@@ -276,7 +279,7 @@
             this.productSearchComboBox.FormattingEnabled = true;
             this.productSearchComboBox.Location = new System.Drawing.Point(767, 77);
             this.productSearchComboBox.Name = "productSearchComboBox";
-            this.productSearchComboBox.Size = new System.Drawing.Size(62, 24);
+            this.productSearchComboBox.Size = new System.Drawing.Size(62, 28);
             this.productSearchComboBox.TabIndex = 16;
             // 
             // MainScreen
