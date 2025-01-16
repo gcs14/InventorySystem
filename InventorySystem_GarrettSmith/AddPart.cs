@@ -73,7 +73,7 @@ namespace InventorySystem_GarrettSmith
             {
                 if (part.Name.Equals(addPartName.Text))
                 {
-                    MessageBox.Show("Error: A part already exists with that name.");
+                    MessageBox.Show("ERROR: A part already exists with that name.");
                 }
             }
         }
@@ -84,7 +84,7 @@ namespace InventorySystem_GarrettSmith
             {
                 if (int.TryParse(addPartFlexText.Text, out _) && Inventory.MachineIDs.ContainsValue(int.Parse(addPartFlexText.Text)))
                 {
-                    MessageBox.Show("Error: A part already exists with that machine ID.");
+                    MessageBox.Show("ERROR: A part already exists with that machine ID.");
                 }
             }
         }

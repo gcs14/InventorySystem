@@ -81,9 +81,20 @@ namespace InventorySystem_GarrettSmith
 
         private void ModifyDeleteAssocPart_Click(object sender, EventArgs e)
         {
-            Part selectedPart = (Part)dgvModifyAssocParts.CurrentRow.DataBoundItem;
-            currentProduct.RemoveAssociatedPart(selectedPart.PartID);
-            SetAssocPartsTable(currentProduct);
+            if (currentProduct.AssociatedParts.Count > 0)
+            {
+                Part selectedPart = (Part)dgvModifyAssocParts.CurrentRow.DataBoundItem;
+                DialogResult confirm = MessageBox.Show("Are you sure want to delete this part from the product?", "WARNING", MessageBoxButtons.YesNo);
+                if (confirm == DialogResult.Yes)
+                {
+                    currentProduct.RemoveAssociatedPart(selectedPart.PartID);
+                    SetAssocPartsTable(currentProduct);
+                }
+            }
+            else
+            {
+                MessageBox.Show("ERROR: There are no parts associated with this product.");
+            }
         }
 
         private void ModifyProductSave_Click(object sender, EventArgs e)
@@ -112,7 +123,7 @@ namespace InventorySystem_GarrettSmith
             {
                 if (part.Name.Equals(modifyProductName.Text))
                 {
-                    MessageBox.Show("Error: A product already exists with that name.");
+                    MessageBox.Show("ERROR: A product already exists with that name.");
                 }
             }
         }

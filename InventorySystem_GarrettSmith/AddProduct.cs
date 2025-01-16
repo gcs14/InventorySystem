@@ -64,9 +64,16 @@ namespace InventorySystem_GarrettSmith
 
         private void DeleteAssocPart_Click(object sender, EventArgs e)
         {
-            Part selectedPart = (Part)dgvAddAssocParts.CurrentRow.DataBoundItem;
-            product.RemoveAssociatedPart(selectedPart.PartID);
-            SetAssocPartsTable(product);
+            if (product.AssociatedParts.Count > 0)
+            {
+                Part selectedPart = (Part)dgvAddAssocParts.CurrentRow.DataBoundItem;
+                product.RemoveAssociatedPart(selectedPart.PartID);
+                SetAssocPartsTable(product);
+            }
+            else
+            {
+                MessageBox.Show("ERROR: There are no parts associated with this product.");
+            }
         }
 
         private void AddProductSave_Click(object sender, EventArgs e)
@@ -92,7 +99,7 @@ namespace InventorySystem_GarrettSmith
             {
                 if (p.Name.Equals(addProductName))
                 {
-                    MessageBox.Show("Error: A product already exists with that name.");
+                    MessageBox.Show("ERROR: A product already exists with that name.");
                 }
             }
         }

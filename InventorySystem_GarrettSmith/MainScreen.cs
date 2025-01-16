@@ -107,7 +107,7 @@ namespace InventorySystem_GarrettSmith
             List<Part> partResults = new List<Part>();
             if (keyword == "")
             {
-                MessageBox.Show("Error: Write value in the search bar to search for a part.");
+                MessageBox.Show("ERROR: Write value in the search bar to search for a part.");
             }
             else
             {
@@ -145,7 +145,7 @@ namespace InventorySystem_GarrettSmith
                     }
                     else
                     {
-                        MessageBox.Show("Enter a valid Part ID number.");
+                        MessageBox.Show("ERROR: Enter a valid Part ID number.");
                         partsSearchBar.Text = "";
                     }
                 }
@@ -171,7 +171,7 @@ namespace InventorySystem_GarrettSmith
             List<Product> productResults = new List<Product>();
             if (keyword == "")
             {
-                MessageBox.Show("Error: Write value in the search bar to search for a product.");
+                MessageBox.Show("ERROR: Write value in the search bar to search for a product.");
             }
             else
             {
@@ -209,7 +209,7 @@ namespace InventorySystem_GarrettSmith
                     }
                     else
                     {
-                        MessageBox.Show("Enter a valid Product ID number.");
+                        MessageBox.Show("ERROR: Enter a valid Product ID number.");
                         partsSearchBar.Text = "";
                     }
                 }
@@ -239,8 +239,10 @@ namespace InventorySystem_GarrettSmith
                     Inventory.RemoveProduct(selectedProduct.ProductID);
                     MessageBox.Show("Product successfully deleted.");
                 }
-                DialogResult error = MessageBox.Show("Can not delete a product that has parts associated with it.\nRemove parts from product to delete successfully.", "ERROR");
-                
+                else
+                {
+                    DialogResult error = MessageBox.Show("Can not delete a product that has parts associated with it.\nRemove parts from product to delete successfully.", "ERROR");
+                }
             }
         }
 
