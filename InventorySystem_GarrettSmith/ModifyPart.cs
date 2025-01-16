@@ -27,6 +27,11 @@ namespace InventorySystem_GarrettSmith
 
         string currentText;
 
+        public ModifyPart()
+        {
+            InitializeComponent();
+        }
+
         public ModifyPart(Inhouse part)
         {
             InitializeComponent();
@@ -41,7 +46,6 @@ namespace InventorySystem_GarrettSmith
 
             currentText = part.MachineID.ToString();
             inhouseRadio.Checked = true;
-
             inhousePart = part;
         }
 
@@ -59,7 +63,6 @@ namespace InventorySystem_GarrettSmith
 
             currentText = part.CompanyName;
             outsourcedRadio.Checked = true;
-
             outsourcedPart = part;
         }
 
@@ -77,7 +80,6 @@ namespace InventorySystem_GarrettSmith
                 else
                 {
                     modifyPartFlexText.Text = currentText;
-
                 }
             }
         }
@@ -102,7 +104,16 @@ namespace InventorySystem_GarrettSmith
 
         private void ModifyPartSave_Click(object sender, EventArgs e)
         {
-            if (ModifyPartExceptions())
+            CustomExceptions customExceptions = new CustomExceptions();
+            if (customExceptions.ModifyPartExceptions(
+                this,
+                currentPartName,
+                currentPartInventory,
+                currentPartPrice,
+                currentPartMin,
+                currentPartMax,
+                currentPartMachineID,
+                currentPartCompanyName))
             {
                 if (inhouseRadio.Checked)
                 {
@@ -140,14 +151,14 @@ namespace InventorySystem_GarrettSmith
         {
             foreach (Part part in Inventory.AllParts)
             {
-                if (part.Name.Equals(modifyPartName.Text))
+                if (part.Name.Equals(modifyPartName.Text) && modifyPartName.Text != currentPartName)
                 {
                     MessageBox.Show("Error: A part already exists with that name.");
                 }
             }
         }
 
-        private void AddPartMachineIDValidation(object sender, EventArgs e)
+        private void ModifyPartMachineIDValidation(object sender, EventArgs e)
         {
             if (inhouseRadio.Checked)
             {
@@ -174,116 +185,6 @@ namespace InventorySystem_GarrettSmith
                 modifyPartInventory.Focus();
             }
         }
-
-        private void ModifyPartPriceValidation(object sender, EventArgs e)
-        {
-            // Validate Max is an integer
-            if (!decimal.TryParse(modifyPartPrice.Text, out _))
-            {
-                MessageBox.Show("Error: Price must be a decimal value.");
-                modifyPartPrice.Text = currentPartPrice;
-                modifyPartPrice.Focus();
-            }
-        }
-
-        private void ModifyPartMaxValidation(object sender, EventArgs e)
-        {
-            // Validate Max is an integer
-            if (!int.TryParse(modifyPartMax.Text, out _))
-            {
-                MessageBox.Show("Error: Enter a valid number for Max.");
-                modifyPartMax.Text = currentPartMax;
-                modifyPartMax.Focus();
-            }
-        }
-
-        private void ModifyPartMinValidation(object sender, EventArgs e)
-        {
-            // Validate Min is an integer
-            if (!int.TryParse(modifyPartMin.Text, out _))
-            {
-                MessageBox.Show("Error: Enter a valid number for Min.");
-                modifyPartMin.Text = currentPartMin;
-                modifyPartMin.Focus();
-            }
-        }
-
-        private bool ModifyPartExceptions()
-        {
-            if (modifyPartName.Text == "")
-            {
-                MessageBox.Show("Error: Enter a valid part name.");
-                modifyPartName.Text = currentPartName;
-                modifyPartName.Focus();
-                return false;
-            }
-            if (modifyPartInventory.Text == "" || !int.TryParse(modifyPartInventory.Text, out _))
-            {
-                MessageBox.Show("Error: Enter a valid number for Inventory.");
-                modifyPartInventory.Text = currentPartInventory;
-                modifyPartInventory.Focus();
-                return false;
-            }
-            if (modifyPartPrice.Text == "" || !decimal.TryParse(modifyPartPrice.Text, out _))
-            {
-                MessageBox.Show("Error: Price must be a decimal value.");
-                modifyPartPrice.Text = currentPartPrice;
-                modifyPartPrice.Focus();
-                return false;
-            }
-            if (modifyPartMax.Text == "" || !int.TryParse(modifyPartMax.Text, out _))
-            {
-                MessageBox.Show("Error: Enter a valid number for Max.");
-                modifyPartMax.Text = currentPartMax;
-                modifyPartMax.Focus();
-                return false;
-            }
-            if (modifyPartMin.Text == "" || !int.TryParse(modifyPartMin.Text, out _))
-            {
-                MessageBox.Show("Error: Enter a valid number for Min.");
-                modifyPartMin.Text = currentPartMin;
-                modifyPartMin.Focus();
-                return false;
-            }
-            if (int.Parse(modifyPartMin.Text) > int.Parse(modifyPartMax.Text))
-            {
-                MessageBox.Show("Error: Max must be greater than Min.");
-                return false;
-            }
-
-            if (int.Parse(modifyPartMin.Text) > int.Parse(modifyPartMax.Text))
-            {
-                MessageBox.Show("Error: Max must be greater than Min.");
-                modifyPartMax.Text = currentPartMax;
-                modifyPartMin.Text = currentPartMin;
-                return false;
-            }
-            if (int.Parse(modifyPartInventory.Text) > int.Parse(modifyPartMax.Text) || int.Parse(modifyPartInventory.Text) < int.Parse(modifyPartMin.Text))
-            {
-                MessageBox.Show("Error: Inventory stocked must be between Max and Min.");
-                modifyPartInventory.Text = currentPartInventory;
-                return false;
-            }
-            if (modifyPartFlexText.Text == "")
-            {
-                MessageBox.Show("Error: Machine ID or Company Name cannot be empty.");
-                return false;
-            }
-            if (inhouseRadio.Checked == true && !int.TryParse(modifyPartFlexText.Text, out _))
-            {
-                MessageBox.Show("Error: Enter a valid number for Machine ID.");
-                modifyPartFlexText.Text = currentPartMachineID;
-                return false;
-            }
-            if (outsourcedRadio.Checked == true && int.TryParse(modifyPartFlexText.Text, out _))
-            {
-                MessageBox.Show("Error: Enter a company name not a number.");
-                modifyPartFlexText.Text = currentPartCompanyName;
-                return false;
-            }
-            return true;
-        }
-
         private void ModifyPartCancel_Click(object sender, EventArgs e)
         {
             this.Close();

@@ -333,13 +333,13 @@
         private System.Windows.Forms.Label modifyProductPriceLabel;
         private System.Windows.Forms.Label modifyProductNameLabel;
         private System.Windows.Forms.Label modifyProductInventoryLabel;
-        private System.Windows.Forms.TextBox modifyProductMin;
         private System.Windows.Forms.Label modifyProductIDLabel;
-        private System.Windows.Forms.TextBox modifyProductMax;
-        private System.Windows.Forms.TextBox modifyProductPrice;
-        private System.Windows.Forms.TextBox modifyProductInventory;
-        private System.Windows.Forms.TextBox modifyProductName;
         private System.Windows.Forms.TextBox modifyProductID;
         private System.Windows.Forms.Label modifyProductLabel;
+        internal System.Windows.Forms.TextBox modifyProductMin;
+        internal System.Windows.Forms.TextBox modifyProductMax;
+        internal System.Windows.Forms.TextBox modifyProductPrice;
+        internal System.Windows.Forms.TextBox modifyProductInventory;
+        internal System.Windows.Forms.TextBox modifyProductName;
     }
 }

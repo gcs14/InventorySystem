@@ -21,13 +21,13 @@ namespace InventorySystem_GarrettSmith
             SetProductsTable();
             dgvProducts.Columns["ProductID"].HeaderText = "Product ID";
             dgvProducts.Columns["Name"].HeaderText = "Name";
-            dgvProducts.Columns["InStock"].HeaderText = "Inventory Level";
+            dgvProducts.Columns["InStock"].HeaderText = "Inventory";
             dgvProducts.Columns["Price"].HeaderText = "Price";
 
             SetPartsTable();
             dgvParts.Columns["PartID"].HeaderText = "Part ID";
             dgvParts.Columns["Name"].HeaderText = "Name";
-            dgvParts.Columns["InStock"].HeaderText = "Inventory Level";
+            dgvParts.Columns["InStock"].HeaderText = "Inventory";
             dgvParts.Columns["Price"].HeaderText = "Price";
 
             partSearchComboBox.Items.Add("ID");
@@ -133,7 +133,7 @@ namespace InventorySystem_GarrettSmith
                     {
                         if (x == p.PartID)
                         {
-                            partResults.Add(inventory.LookupPart(int.Parse(keyword)));
+                            partResults.Add(Inventory.LookupPart(int.Parse(keyword)));
                             dgvParts.DataSource = partResults;
                             count++;
                         }
@@ -183,7 +183,6 @@ namespace InventorySystem_GarrettSmith
             }
             else
             {
-                Inventory productInventory = new Inventory();
                 if (int.TryParse(keyword, out int x))
                 {
                     int count = 0;
@@ -191,7 +190,7 @@ namespace InventorySystem_GarrettSmith
                     {
                         if (x == p.ProductID)
                         {
-                            productResults.Add(productInventory.LookupProduct(int.Parse(keyword)));
+                            productResults.Add(Inventory.LookupProduct(int.Parse(keyword)));
                             dgvProducts.DataSource = productResults;
                             count++;
                         }
@@ -213,7 +212,7 @@ namespace InventorySystem_GarrettSmith
         private void AddProduct_Click(object sender, EventArgs e)
         {
             Product selectedProduct = (Product)dgvProducts.CurrentRow.DataBoundItem;
-            new AddProductScreen().ShowDialog();
+            new AddProduct().ShowDialog();
         }
 
         private void ModifyProduct_Click(object sender, EventArgs e)
@@ -225,12 +224,17 @@ namespace InventorySystem_GarrettSmith
         private void DeleteProduct_Click(object sender, EventArgs e)
         {
             Inventory inventory = new Inventory();
+            Product selectedProduct = (Product)dgvProducts.CurrentRow.DataBoundItem;
             DialogResult confirm = MessageBox.Show("Are you sure want to delete this product?", "WARNING", MessageBoxButtons.YesNo);
             if (confirm == DialogResult.Yes)
             {
-                Product selectedProduct = (Product)dgvProducts.CurrentRow.DataBoundItem;
-                inventory.RemoveProduct(selectedProduct.ProductID);
-                MessageBox.Show("Product successfully deleted.");
+                if (selectedProduct.AssociatedParts.Count == 0)
+                {
+                    Inventory.RemoveProduct(selectedProduct.ProductID);
+                    MessageBox.Show("Product successfully deleted.");
+                }
+                DialogResult error = MessageBox.Show("Can not delete a product that has parts associated with it.\nRemove parts from product to delete successfully.", "ERROR");
+                
             }
         }
 

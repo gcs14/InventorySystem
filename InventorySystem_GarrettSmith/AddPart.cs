@@ -33,11 +33,12 @@ namespace InventorySystem_GarrettSmith
 
         private void AddPartSave_Click(object sender, EventArgs e)
         {
-            if (AddPartExceptions())
+            CustomExceptions customExceptions = new CustomExceptions();
+            if (customExceptions.AddPartExceptions(this))
             {
+                int id = Inventory.partsCount + 1;
                 if (inhouseRadio.Checked)
                 {
-                    int id = Inventory.AllParts.Count + 1;
                     Inventory.AddPart(new Inhouse(
                         id,
                         addPartName.Text,
@@ -52,7 +53,7 @@ namespace InventorySystem_GarrettSmith
                 else
                 {
                     Inventory.AddPart(new Outsourced(
-                        Inventory.AllParts.Count + 1,
+                        id,
                         addPartName.Text,
                         decimal.Parse(addPartPrice.Text),
                         int.Parse(addPartInventory.Text),
@@ -61,6 +62,7 @@ namespace InventorySystem_GarrettSmith
                         addPartFlexText.Text
                     ));
                 }
+                Inventory.partsCount++;
                 this.Close();
             }
         }
@@ -85,73 +87,6 @@ namespace InventorySystem_GarrettSmith
                     MessageBox.Show("Error: A part already exists with that machine ID.");
                 }
             }
-        }
-
-        private bool AddPartExceptions()
-        {
-            if (addPartName.Text == "")
-            {
-                MessageBox.Show("Error: Enter a valid part name.");
-                addPartName.Text = "";
-                addPartName.Focus();
-                return false;
-            }
-            if (addPartInventory.Text == "" || !int.TryParse(addPartInventory.Text, out _))
-            {
-                MessageBox.Show("Error: Enter a valid number for Inventory.");
-                addPartInventory.Text = "";
-                addPartInventory.Focus();
-                return false;
-            }
-            if (addPartPrice.Text == "" || !decimal.TryParse(addPartPrice.Text, out _))
-            {
-                MessageBox.Show("Error: Price must be a decimal value.");
-                addPartPrice.Text = "";
-                addPartPrice.Focus();
-                return false;
-            }
-            if (addPartMax.Text == "" || !int.TryParse(addPartMax.Text, out _))
-            {
-                MessageBox.Show("Error: Enter a valid number for Max.");
-                addPartMax.Text = "";
-                addPartMax.Focus();
-                return false;
-            }
-            if (addPartMin.Text == "" || !int.TryParse(addPartMin.Text, out _))
-            {
-                MessageBox.Show("Error: Enter a valid number for Min.");
-                addPartMin.Text = "";
-                addPartMin.Focus();
-                return false;
-            }
-            if (int.Parse(addPartMin.Text) > int.Parse(addPartMax.Text))
-            {
-                MessageBox.Show("Error: Max must be greater than Min.");
-                return false;
-            }
-            if (int.Parse(addPartInventory.Text) > int.Parse(addPartMax.Text) || int.Parse(addPartInventory.Text) < int.Parse(addPartMin.Text))
-            {
-                MessageBox.Show("Error: Inventory stocked must be between Max and Min.");
-                return false;
-            }
-            if (addPartFlexText.Text == "")
-            {
-                MessageBox.Show("Error: Machine ID or Company Name cannot be empty.");
-                return false;
-            }
-            if (inhouseRadio.Checked == true && !int.TryParse(addPartFlexText.Text, out _))
-            {
-                MessageBox.Show("Error: Enter a valid number for Machine ID.");
-                addPartFlexText.Text = "";
-                return false;
-            }
-            if (outsourcedRadio.Checked == true && int.TryParse(addPartFlexText.Text, out _))
-            {
-                MessageBox.Show("Error: Enter a company name not a number.");
-                addPartFlexText.Text = "";
-                return false;
-            }
-            return true;
         }
 
         private void AddPartCancel_Click(object sender, EventArgs e)

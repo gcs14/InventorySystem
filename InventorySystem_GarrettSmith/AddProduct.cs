@@ -13,12 +13,12 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace InventorySystem_GarrettSmith
 {
-    public partial class AddProductScreen : Form
+    public partial class AddProduct : Form
     {
-        Inventory inventory = new Inventory();
+        //Inventory inventory = new Inventory();
         Product product = new Product();
 
-        public AddProductScreen()
+        public AddProduct()
         {
             InitializeComponent();
         }
@@ -30,26 +30,21 @@ namespace InventorySystem_GarrettSmith
 
         private void SetCandidatePartsTable()
         {
-            var bsCandidateParts = new BindingSource();
-            bsCandidateParts.DataSource = Inventory.AllParts;
-            dgvAddCandidateParts.DataSource = bsCandidateParts;
+            dgvAddCandidateParts.DataSource = Inventory.AllParts;
 
             dgvAddCandidateParts.Columns["PartID"].HeaderText = "Part ID";
             dgvAddCandidateParts.Columns["Name"].HeaderText = "Name";
-            dgvAddCandidateParts.Columns["InStock"].HeaderText = "Inventory Level";
+            dgvAddCandidateParts.Columns["InStock"].HeaderText = "Inventory";
             dgvAddCandidateParts.Columns["Price"].HeaderText = "Price";
         }
 
         private void SetAssocPartsTable(Product p)
         {
-            var bsAssocParts = new BindingSource();
-            //bsAssocParts.DataSource = p.AssociatedParts.OrderBy(part => part.PartID);
-            bsAssocParts.DataSource = p.AssociatedParts;
-            dgvAddAssocParts.DataSource = bsAssocParts;
+            dgvAddAssocParts.DataSource = p.AssociatedParts;
 
             dgvAddAssocParts.Columns["PartID"].HeaderText = "Part ID";
             dgvAddAssocParts.Columns["Name"].HeaderText = "Name";
-            dgvAddAssocParts.Columns["InStock"].HeaderText = "Inventory Level";
+            dgvAddAssocParts.Columns["InStock"].HeaderText = "Inventory";
             dgvAddAssocParts.Columns["Price"].HeaderText = "Price";
         }
 
@@ -67,7 +62,7 @@ namespace InventorySystem_GarrettSmith
             }
         }
 
-        private void ModifyDeleteAssocPart_Click(object sender, EventArgs e)
+        private void DeleteAssocPart_Click(object sender, EventArgs e)
         {
             Part selectedPart = (Part)dgvAddAssocParts.CurrentRow.DataBoundItem;
             product.RemoveAssociatedPart(selectedPart.PartID);
@@ -76,16 +71,19 @@ namespace InventorySystem_GarrettSmith
 
         private void AddProductSave_Click(object sender, EventArgs e)
         {
-            if (AddProductExceptions())
+            CustomExceptions customExceptions = new CustomExceptions();
+            if (customExceptions.AddProductExceptions(this))
             {
-                inventory.AddProduct(new Product(
-                    Inventory.Products.Count + 1,
-                    addProductName.Text,
-                    int.Parse(addProductInventory.Text),
-                    decimal.Parse(addProductPrice.Text),
-                    int.Parse(addProductMin.Text),
-                    int.Parse(addProductMax.Text)
-                ));
+
+                product.ProductID = Inventory.productsCount + 1;
+                product.Name = addProductName.Text;
+                product.InStock = int.Parse(addProductInventory.Text);
+                product.Price = decimal.Parse(addProductPrice.Text);
+                product.Min = int.Parse(addProductMin.Text);
+                product.Max = int.Parse(addProductMax.Text);
+
+                Inventory.AddProduct(product);
+                Inventory.productsCount++;
                 this.Close();
             }
         }
@@ -98,51 +96,6 @@ namespace InventorySystem_GarrettSmith
                 {
                     MessageBox.Show("Error: A product already exists with that name.");
                 }
-            }
-        }
-
-        private bool AddProductExceptions()
-        {
-            if (addProductName.Text == "")
-            {
-                MessageBox.Show("Error: Enter a valid product name.");
-                addProductName.Focus();
-                return false;
-            }
-            if (addProductInventory.Text == "" || !int.TryParse(addProductInventory.Text, out _))
-            {
-                MessageBox.Show("Error: Enter a valid number for Inventory.");
-                addProductInventory.Text = "";
-                addProductInventory.Focus();
-                return false;
-            }
-            if (addProductMax.Text == "" || !int.TryParse(addProductMax.Text, out _))
-            {
-                MessageBox.Show("Error: Enter a valid number for Max.");
-                addProductMax.Text = "";
-                addProductMax.Focus();
-                return false;
-            }
-            if (addProductMin.Text == "" || !int.TryParse(addProductMin.Text, out _))
-            {
-                MessageBox.Show("Error: Enter a valid number for Min.");
-                addProductMin.Text = "";
-                addProductMin.Focus();
-                return false;
-            }
-            if (int.Parse(addProductMin.Text) > int.Parse(addProductMax.Text))
-            {
-                MessageBox.Show("Error: Max must be greater than Min.");
-                return false;
-            }
-            if (int.Parse(addProductInventory.Text) > int.Parse(addProductMax.Text) || int.Parse(addProductInventory.Text) < int.Parse(addProductMin.Text))
-            {
-                MessageBox.Show("Error: Inventory stocked must be between Max and Min.");
-                return false;
-            }
-            else
-            {
-                return true;
             }
         }
 

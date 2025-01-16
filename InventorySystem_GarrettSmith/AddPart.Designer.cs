@@ -284,23 +284,23 @@
         #endregion
 
         private System.Windows.Forms.Label addPartLabel;
-        private System.Windows.Forms.RadioButton inhouseRadio;
-        private System.Windows.Forms.RadioButton outsourcedRadio;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label addPartIDLabel;
-        private System.Windows.Forms.TextBox addPartName;
         private System.Windows.Forms.Label addPartNameLabel;
-        private System.Windows.Forms.TextBox addPartInventory;
-        private System.Windows.Forms.TextBox addPartPrice;
         private System.Windows.Forms.Label addPartInventoryLabel;
         private System.Windows.Forms.Label addPartPriceLabel;
-        private System.Windows.Forms.TextBox addPartMax;
         private System.Windows.Forms.Label addPartMaxLabel;
-        private System.Windows.Forms.TextBox addPartMin;
         private System.Windows.Forms.Label addPartMinLabel;
-        private System.Windows.Forms.TextBox addPartFlexText;
         private System.Windows.Forms.Label toggleLabel;
         private System.Windows.Forms.Button addPartSaveBtn;
         private System.Windows.Forms.Button button2;
+        internal System.Windows.Forms.RadioButton inhouseRadio;
+        internal System.Windows.Forms.RadioButton outsourcedRadio;
+        internal System.Windows.Forms.TextBox addPartName;
+        internal System.Windows.Forms.TextBox addPartInventory;
+        internal System.Windows.Forms.TextBox addPartPrice;
+        internal System.Windows.Forms.TextBox addPartMax;
+        internal System.Windows.Forms.TextBox addPartMin;
+        internal System.Windows.Forms.TextBox addPartFlexText;
     }
 }

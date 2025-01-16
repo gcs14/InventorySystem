@@ -1,6 +1,6 @@
 ﻿namespace InventorySystem_GarrettSmith
 {
-    partial class AddProductScreen
+    partial class AddProduct
     {
         /// <summary>
         /// Required designer variable.
@@ -223,7 +223,7 @@
             this.addAssocPart_deleteBtn.TabIndex = 28;
             this.addAssocPart_deleteBtn.Text = "Delete";
             this.addAssocPart_deleteBtn.UseVisualStyleBackColor = true;
-            this.addAssocPart_deleteBtn.Click += new System.EventHandler(this.ModifyDeleteAssocPart_Click);
+            this.addAssocPart_deleteBtn.Click += new System.EventHandler(this.DeleteAssocPart_Click);
             // 
             // addCandidatePart_addBtn
             // 
@@ -322,12 +322,7 @@
         private System.Windows.Forms.Label addProductPriceLabel;
         private System.Windows.Forms.Label addProductNameLabel;
         private System.Windows.Forms.Label addProductInventoryLabel;
-        private System.Windows.Forms.TextBox addProductMin;
         private System.Windows.Forms.Label addProductIDLabel;
-        private System.Windows.Forms.TextBox addProductMax;
-        private System.Windows.Forms.TextBox addProductPrice;
-        private System.Windows.Forms.TextBox addProductInventory;
-        private System.Windows.Forms.TextBox addProductName;
         private System.Windows.Forms.TextBox addProductID;
         private System.Windows.Forms.Label addProductLabel;
         private System.Windows.Forms.DataGridView dgvAddCandidateParts;
@@ -338,5 +333,10 @@
         private System.Windows.Forms.Button addProductSaveBtn;
         private System.Windows.Forms.Label addCandidatePartsLabel;
         private System.Windows.Forms.Label addAssocPartsLabel;
+        internal System.Windows.Forms.TextBox addProductMin;
+        internal System.Windows.Forms.TextBox addProductMax;
+        internal System.Windows.Forms.TextBox addProductPrice;
+        internal System.Windows.Forms.TextBox addProductInventory;
+        internal System.Windows.Forms.TextBox addProductName;
     }
 }

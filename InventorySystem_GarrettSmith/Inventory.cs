@@ -18,8 +18,9 @@ namespace InventorySystem_GarrettSmith
         //+ <<prop>> AllParts: BindingList<Part>
         public static BindingList<Product> Products = new BindingList<Product>();
         public static BindingList<Part> AllParts = new BindingList<Part>();
-        //public static List<string> MachineIDs = new List<string>();
         public static Dictionary<int, int> MachineIDs = new Dictionary<int, int>();
+        public static int productsCount = 0;
+        public static int partsCount = 0;
 
         public static void GenerateDemoData()
         {
@@ -32,6 +33,7 @@ namespace InventorySystem_GarrettSmith
             Products.Add(demoProduct2);
             Products.Add(demoProduct3);
             Products.Add(demoProduct4);
+            productsCount = Products.Count;
 
             Outsourced demoPart1 = new Outsourced(1, "GeForce RTX 4070", 549.99m, 8, 5, 15, "Nvidia");
             Outsourced demoPart2 = new Outsourced(2, "GeForce RTX 4060 Ti", 449.99m, 13, 5, 15, "Nvidia");
@@ -54,6 +56,7 @@ namespace InventorySystem_GarrettSmith
             AllParts.Add(demoPart8);
             AllParts.Add(demoPart9);
             AllParts.Add(demoPart10);
+            partsCount = AllParts.Count;
 
             // demoProduct1 AssociatedParts
             demoProduct1.AddAssociatedPart(demoPart2);
@@ -84,13 +87,13 @@ namespace InventorySystem_GarrettSmith
         }
 
         //+ addProduct(Product) : void
-        public void AddProduct(Product product)
+        public static void AddProduct(Product product)
         {
             Products.Add(product);
         }
 
         //+ removeProduct(int) : bool
-        public bool RemoveProduct(int productID)
+        public static bool RemoveProduct(int productID)
         {
             foreach (Product product in Products)
             {
@@ -104,7 +107,7 @@ namespace InventorySystem_GarrettSmith
         }
 
         //+ lookupProduct(int) : Product
-        public Product LookupProduct(int productID)
+        public static Product LookupProduct(int productID)
         {
             Product foundProduct = null;
             foreach (Product product in Products)
@@ -118,7 +121,7 @@ namespace InventorySystem_GarrettSmith
         }
 
         //+ updateProduct(int, Product) : void
-        public void UpdateProduct(int ProductID, Product product)
+        public static void UpdateProduct(int ProductID, Product product)
         {
             int index = ProductID - 1;
             if (product.ProductID == ProductID)
@@ -147,7 +150,7 @@ namespace InventorySystem_GarrettSmith
             return false;
         }
         //+ lookupPart(int) : Part
-        public Part LookupPart(int partID)
+        public static Part LookupPart(int partID)
         {
             Part foundPart = null;
             foreach (Part part in Inventory.AllParts)
