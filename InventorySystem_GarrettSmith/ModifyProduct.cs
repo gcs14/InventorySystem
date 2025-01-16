@@ -13,16 +13,10 @@ namespace InventorySystem_GarrettSmith
 {
     public partial class ModifyProduct : Form
     {
-        //Inventory inventory = new Inventory();
         Product currentProduct = new Product();
         Product updatedProduct;
         List<Part> potentialParts = new List<Part>();
         int currentProductID;
-        //string currentProductName;
-        //string currentProductInventory;
-        //string currentProductPrice;
-        //string currentProductMin;
-        //string currentProductMax;
 
         public ModifyProduct()
         {
@@ -68,8 +62,6 @@ namespace InventorySystem_GarrettSmith
             dgvModifyAssocParts.Columns["InStock"].HeaderText = "Inventory";
             dgvModifyAssocParts.Columns["Price"].HeaderText = "Price";
         }
-
-        
 
         private void ModifyCandidatePart_Click(object sender, EventArgs e)
         {

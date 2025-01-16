@@ -15,7 +15,7 @@ namespace InventorySystem_GarrettSmith
 {
     public partial class AddProduct : Form
     {
-        //Inventory inventory = new Inventory();
+        CustomExceptions customExceptions = new CustomExceptions();
         Product product = new Product();
 
         public AddProduct()
@@ -71,10 +71,8 @@ namespace InventorySystem_GarrettSmith
 
         private void AddProductSave_Click(object sender, EventArgs e)
         {
-            CustomExceptions customExceptions = new CustomExceptions();
             if (customExceptions.AddProductExceptions(this))
             {
-
                 product.ProductID = Inventory.productsCount + 1;
                 product.Name = addProductName.Text;
                 product.InStock = int.Parse(addProductInventory.Text);

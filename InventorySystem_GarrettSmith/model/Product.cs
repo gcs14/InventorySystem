@@ -42,15 +42,11 @@ namespace InventorySystem_GarrettSmith.model
             Max = max;
         }
 
-
-
-        //+ addAssociatedPart(Part) : void
         public void AddAssociatedPart(Part part)
         {
             AssociatedParts.Add(part);
         }
 
-        //+ removeAssociatedPart(int) : bool
         public bool RemoveAssociatedPart(int partID)
         {
             foreach (Part part in AssociatedParts)
@@ -64,7 +60,6 @@ namespace InventorySystem_GarrettSmith.model
             return false;
         }
 
-        //+ lookupAssociatedPart(int) : Part
         public Part lookupAssociatedPart(int partID)
         {
             Part foundPart = null;

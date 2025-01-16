@@ -14,8 +14,6 @@ namespace InventorySystem_GarrettSmith
 {
     internal class Inventory
     {
-        //+ <<prop>> Products: BindingList<Product>
-        //+ <<prop>> AllParts: BindingList<Part>
         public static BindingList<Product> Products = new BindingList<Product>();
         public static BindingList<Part> AllParts = new BindingList<Part>();
         public static Dictionary<int, int> MachineIDs = new Dictionary<int, int>();
@@ -56,6 +54,7 @@ namespace InventorySystem_GarrettSmith
             AllParts.Add(demoPart8);
             AllParts.Add(demoPart9);
             AllParts.Add(demoPart10);
+
             partsCount = AllParts.Count;
 
             // demoProduct1 AssociatedParts
@@ -86,13 +85,11 @@ namespace InventorySystem_GarrettSmith
             MachineIDs.Add(demoPart10.PartID, demoPart10.MachineID);
         }
 
-        //+ addProduct(Product) : void
         public static void AddProduct(Product product)
         {
             Products.Add(product);
         }
 
-        //+ removeProduct(int) : bool
         public static bool RemoveProduct(int productID)
         {
             foreach (Product product in Products)
@@ -106,7 +103,6 @@ namespace InventorySystem_GarrettSmith
             return false;
         }
 
-        //+ lookupProduct(int) : Product
         public static Product LookupProduct(int productID)
         {
             Product foundProduct = null;
@@ -120,7 +116,6 @@ namespace InventorySystem_GarrettSmith
             return foundProduct;
         }
 
-        //+ updateProduct(int, Product) : void
         public static void UpdateProduct(int ProductID, Product product)
         {
             int index = ProductID - 1;
@@ -130,13 +125,11 @@ namespace InventorySystem_GarrettSmith
             }
         }
 
-        //+ addPart(Part) : void
         public static void AddPart(Part part)
         {
             AllParts.Add(part);
         }
 
-        //+ deletePart(Part) : bool
         public static bool DeletePart(Part part)
         {
             foreach (Part p in AllParts)
@@ -149,7 +142,7 @@ namespace InventorySystem_GarrettSmith
             }
             return false;
         }
-        //+ lookupPart(int) : Part
+
         public static Part LookupPart(int partID)
         {
             Part foundPart = null;
@@ -163,7 +156,6 @@ namespace InventorySystem_GarrettSmith
             return foundPart;
         }
 
-        //+ updatePart(int, Part) : void
         public static void UpdatePart(int PartID, Inhouse part)
         {
             int index = PartID - 1;

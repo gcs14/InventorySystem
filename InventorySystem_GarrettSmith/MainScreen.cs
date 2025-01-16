@@ -23,27 +23,23 @@ namespace InventorySystem_GarrettSmith
             dgvProducts.Columns["Name"].HeaderText = "Name";
             dgvProducts.Columns["InStock"].HeaderText = "Inventory";
             dgvProducts.Columns["Price"].HeaderText = "Price";
+            productSearchComboBox.Items.Add("ID");
+            productSearchComboBox.Items.Add("Name");
+            productSearchComboBox.SelectedIndex = 0;
 
             SetPartsTable();
             dgvParts.Columns["PartID"].HeaderText = "Part ID";
             dgvParts.Columns["Name"].HeaderText = "Name";
             dgvParts.Columns["InStock"].HeaderText = "Inventory";
             dgvParts.Columns["Price"].HeaderText = "Price";
-
             partSearchComboBox.Items.Add("ID");
             partSearchComboBox.Items.Add("Name");
             partSearchComboBox.SelectedIndex = 0;
-
-            productSearchComboBox.Items.Add("ID");
-            productSearchComboBox.Items.Add("Name");
-            productSearchComboBox.SelectedIndex = 0;
         }
 
         private void SetProductsTable()
         {
-            var bsProducts = new BindingSource();
-            bsProducts.DataSource = Inventory.Products;
-            dgvProducts.DataSource = bsProducts;
+            dgvProducts.DataSource = Inventory.Products;
         }
 
         private void ProductsTableResetButton_Click(object sender, EventArgs e)
@@ -53,9 +49,7 @@ namespace InventorySystem_GarrettSmith
 
         private void SetPartsTable()
         {
-            var bsParts = new BindingSource();
-            bsParts.DataSource = Inventory.AllParts;
-            dgvParts.DataSource = bsParts;
+            dgvParts.DataSource = Inventory.AllParts;
         }
 
         private void PartsTableResetButton_Click(object sender, EventArgs e)
@@ -111,43 +105,49 @@ namespace InventorySystem_GarrettSmith
         {
             string keyword = partsSearchBar.Text;
             List<Part> partResults = new List<Part>();
-            if (partSearchComboBox.SelectedIndex == 1)
+            if (keyword == "")
             {
-                partResults = SearchPart(keyword);
-                if (partResults.Count > 0)
-                {
-                    dgvParts.DataSource = partResults;
-                }
-                else
-                {
-                    MessageBox.Show("Part(s) not found.");
-                }
+                MessageBox.Show("Error: Write value in the search bar to search for a part.");
             }
             else
             {
-                Inventory inventory = new Inventory();
-                if (int.TryParse(keyword, out int x))
+                if (partSearchComboBox.SelectedIndex == 1)
                 {
-                    int count = 0;
-                    foreach (Part p in Inventory.AllParts)
+                    partResults = SearchPart(keyword);
+                    if (partResults.Count > 0)
                     {
-                        if (x == p.PartID)
-                        {
-                            partResults.Add(Inventory.LookupPart(int.Parse(keyword)));
-                            dgvParts.DataSource = partResults;
-                            count++;
-                        }
+                        dgvParts.DataSource = partResults;
                     }
-                    if (count < 1)
+                    else
                     {
                         MessageBox.Show("Part(s) not found.");
-                        dgvParts.DataSource = Inventory.AllParts;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Enter a valid Part ID number.");
-                    partsSearchBar.Text = "";
+                    if (int.TryParse(keyword, out int x))
+                    {
+                        int count = 0;
+                        foreach (Part p in Inventory.AllParts)
+                        {
+                            if (x == p.PartID)
+                            {
+                                partResults.Add(Inventory.LookupPart(int.Parse(keyword)));
+                                dgvParts.DataSource = partResults;
+                                count++;
+                            }
+                        }
+                        if (count < 1)
+                        {
+                            MessageBox.Show("Part(s) not found.");
+                            dgvParts.DataSource = Inventory.AllParts;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Enter a valid Part ID number.");
+                        partsSearchBar.Text = "";
+                    }
                 }
             }
         }
@@ -169,42 +169,49 @@ namespace InventorySystem_GarrettSmith
         {
             string keyword = productsSearchBar.Text;
             List<Product> productResults = new List<Product>();
-            if (productSearchComboBox.SelectedIndex == 1)
+            if (keyword == "")
             {
-                productResults = SearchProduct(keyword);
-                if (productResults.Count > 0)
-                {
-                    dgvProducts.DataSource = productResults;
-                }
-                else
-                {
-                    MessageBox.Show("Product(s) not found.");
-                }
+                MessageBox.Show("Error: Write value in the search bar to search for a product.");
             }
             else
             {
-                if (int.TryParse(keyword, out int x))
+                if (productSearchComboBox.SelectedIndex == 1)
                 {
-                    int count = 0;
-                    foreach (Product p in Inventory.Products)
+                    productResults = SearchProduct(keyword);
+                    if (productResults.Count > 0)
                     {
-                        if (x == p.ProductID)
-                        {
-                            productResults.Add(Inventory.LookupProduct(int.Parse(keyword)));
-                            dgvProducts.DataSource = productResults;
-                            count++;
-                        }
+                        dgvProducts.DataSource = productResults;
                     }
-                    if (count < 1)
+                    else
                     {
                         MessageBox.Show("Product(s) not found.");
-                        dgvProducts.DataSource = Inventory.Products;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Enter a valid Product ID number.");
-                    partsSearchBar.Text = "";
+                    if (int.TryParse(keyword, out int x))
+                    {
+                        int count = 0;
+                        foreach (Product p in Inventory.Products)
+                        {
+                            if (x == p.ProductID)
+                            {
+                                productResults.Add(Inventory.LookupProduct(int.Parse(keyword)));
+                                dgvProducts.DataSource = productResults;
+                                count++;
+                            }
+                        }
+                        if (count < 1)
+                        {
+                            MessageBox.Show("Product(s) not found.");
+                            dgvProducts.DataSource = Inventory.Products;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Enter a valid Product ID number.");
+                        partsSearchBar.Text = "";
+                    }
                 }
             }
         }
@@ -223,7 +230,6 @@ namespace InventorySystem_GarrettSmith
 
         private void DeleteProduct_Click(object sender, EventArgs e)
         {
-            Inventory inventory = new Inventory();
             Product selectedProduct = (Product)dgvProducts.CurrentRow.DataBoundItem;
             DialogResult confirm = MessageBox.Show("Are you sure want to delete this product?", "WARNING", MessageBoxButtons.YesNo);
             if (confirm == DialogResult.Yes)

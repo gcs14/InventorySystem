@@ -14,6 +14,7 @@ namespace InventorySystem_GarrettSmith
 {
     public partial class AddPart : Form
     {
+        CustomExceptions customExceptions = new CustomExceptions();
         public AddPart()
         {
             InitializeComponent();
@@ -33,7 +34,6 @@ namespace InventorySystem_GarrettSmith
 
         private void AddPartSave_Click(object sender, EventArgs e)
         {
-            CustomExceptions customExceptions = new CustomExceptions();
             if (customExceptions.AddPartExceptions(this))
             {
                 int id = Inventory.partsCount + 1;

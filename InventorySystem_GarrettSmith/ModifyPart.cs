@@ -14,7 +14,6 @@ namespace InventorySystem_GarrettSmith
 {
     public partial class ModifyPart : Form
     {
-        //string partID;
         Inhouse inhousePart;
         Outsourced outsourcedPart;
         string currentPartName;
@@ -166,23 +165,6 @@ namespace InventorySystem_GarrettSmith
                 {
                     MessageBox.Show("Error: A part already exists with that machine ID.");
                 }
-            }
-        }
-
-        private void ModifyPartInventoryValidation(object sender, EventArgs e)
-        {
-            // Validate Inventory is a integer
-            if (!int.TryParse(modifyPartInventory.Text, out _))
-            {
-                MessageBox.Show("Error: Enter a valid number for Inventory.");
-                modifyPartInventory.Text = currentPartInventory;
-                modifyPartInventory.Focus();
-            }
-            if (int.Parse(currentPartInventory) < 0)
-            {
-                MessageBox.Show("Error: Inventory must be 0 or greater.");
-                modifyPartInventory.Text = currentPartInventory;
-                modifyPartInventory.Focus();
             }
         }
         private void ModifyPartCancel_Click(object sender, EventArgs e)
