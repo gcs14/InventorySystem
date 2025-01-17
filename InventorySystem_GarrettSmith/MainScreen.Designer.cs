@@ -48,6 +48,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.partSearchComboBox = new System.Windows.Forms.ComboBox();
             this.productSearchComboBox = new System.Windows.Forms.ComboBox();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvParts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
@@ -282,11 +283,20 @@
             this.productSearchComboBox.Size = new System.Drawing.Size(62, 28);
             this.productSearchComboBox.TabIndex = 16;
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(591, 32);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(0, 15);
+            this.linkLabel1.TabIndex = 17;
+            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1133, 632);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.productSearchComboBox);
             this.Controls.Add(this.partSearchComboBox);
             this.Controls.Add(this.button2);
@@ -338,6 +348,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ComboBox partSearchComboBox;
         private System.Windows.Forms.ComboBox productSearchComboBox;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
 

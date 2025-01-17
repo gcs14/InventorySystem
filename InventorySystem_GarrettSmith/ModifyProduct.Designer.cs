@@ -49,6 +49,10 @@
             this.modifyProductName = new System.Windows.Forms.TextBox();
             this.modifyProductID = new System.Windows.Forms.TextBox();
             this.modifyProductLabel = new System.Windows.Forms.Label();
+            this.modifyProductSearchComboBox = new System.Windows.Forms.ComboBox();
+            this.modifyProductsSearchBtn = new System.Windows.Forms.Button();
+            this.modifyProductsSearchBar = new System.Windows.Forms.TextBox();
+            this.modifyCandidatePartsReset = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvModifyAssocParts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvModifyCandidateParts)).BeginInit();
             this.SuspendLayout();
@@ -281,11 +285,57 @@
             this.modifyProductLabel.TabIndex = 32;
             this.modifyProductLabel.Text = "Modify Product";
             // 
+            // modifyProductSearchComboBox
+            // 
+            this.modifyProductSearchComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modifyProductSearchComboBox.FormattingEnabled = true;
+            this.modifyProductSearchComboBox.Location = new System.Drawing.Point(692, 56);
+            this.modifyProductSearchComboBox.Name = "modifyProductSearchComboBox";
+            this.modifyProductSearchComboBox.Size = new System.Drawing.Size(62, 28);
+            this.modifyProductSearchComboBox.TabIndex = 55;
+            // 
+            // modifyProductsSearchBtn
+            // 
+            this.modifyProductsSearchBtn.AutoSize = true;
+            this.modifyProductsSearchBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modifyProductsSearchBtn.Location = new System.Drawing.Point(971, 54);
+            this.modifyProductsSearchBtn.Name = "modifyProductsSearchBtn";
+            this.modifyProductsSearchBtn.Size = new System.Drawing.Size(75, 30);
+            this.modifyProductsSearchBtn.TabIndex = 54;
+            this.modifyProductsSearchBtn.Text = "Search";
+            this.modifyProductsSearchBtn.UseVisualStyleBackColor = true;
+            this.modifyProductsSearchBtn.Click += new System.EventHandler(this.SearchCandidatePart_Click);
+            // 
+            // modifyProductsSearchBar
+            // 
+            this.modifyProductsSearchBar.AcceptsTab = true;
+            this.modifyProductsSearchBar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modifyProductsSearchBar.Location = new System.Drawing.Point(760, 56);
+            this.modifyProductsSearchBar.Name = "modifyProductsSearchBar";
+            this.modifyProductsSearchBar.Size = new System.Drawing.Size(205, 26);
+            this.modifyProductsSearchBar.TabIndex = 53;
+            // 
+            // modifyCandidatePartsReset
+            // 
+            this.modifyCandidatePartsReset.AutoSize = true;
+            this.modifyCandidatePartsReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modifyCandidatePartsReset.Location = new System.Drawing.Point(499, 269);
+            this.modifyCandidatePartsReset.Name = "modifyCandidatePartsReset";
+            this.modifyCandidatePartsReset.Size = new System.Drawing.Size(75, 30);
+            this.modifyCandidatePartsReset.TabIndex = 56;
+            this.modifyCandidatePartsReset.Text = "Reset";
+            this.modifyCandidatePartsReset.UseVisualStyleBackColor = true;
+            this.modifyCandidatePartsReset.Click += new System.EventHandler(this.CandidatePartsResetBtn_Click);
+            // 
             // ModifyProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1089, 632);
+            this.Controls.Add(this.modifyCandidatePartsReset);
+            this.Controls.Add(this.modifyProductSearchComboBox);
+            this.Controls.Add(this.modifyProductsSearchBtn);
+            this.Controls.Add(this.modifyProductsSearchBar);
             this.Controls.Add(this.addAssocPartsLabel);
             this.Controls.Add(this.modifyCandidatePartsLabel);
             this.Controls.Add(this.modifyProductCancelBtn);
@@ -341,5 +391,9 @@
         internal System.Windows.Forms.TextBox modifyProductPrice;
         internal System.Windows.Forms.TextBox modifyProductInventory;
         internal System.Windows.Forms.TextBox modifyProductName;
+        private System.Windows.Forms.ComboBox modifyProductSearchComboBox;
+        private System.Windows.Forms.Button modifyProductsSearchBtn;
+        private System.Windows.Forms.TextBox modifyProductsSearchBar;
+        private System.Windows.Forms.Button modifyCandidatePartsReset;
     }
 }

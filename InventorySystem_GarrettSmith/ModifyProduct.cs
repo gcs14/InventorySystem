@@ -40,6 +40,9 @@ namespace InventorySystem_GarrettSmith
         private void ModifyProduct_Load(object sender, EventArgs e)
         {
             SetCandidatePartsTable();
+            modifyProductSearchComboBox.Items.Add("ID");
+            modifyProductSearchComboBox.Items.Add("Name");
+            modifyProductSearchComboBox.SelectedIndex = 0;
             SetAssocPartsTable(Inventory.LookupProduct(currentProductID));
         }
 
@@ -63,9 +66,78 @@ namespace InventorySystem_GarrettSmith
             dgvModifyAssocParts.Columns["Price"].HeaderText = "Price";
         }
 
+        private List<Part> SearchPart(string keyword)
+        {
+            List<Part> partResults = new List<Part>();
+            foreach (Part part in Inventory.AllParts)
+            {
+                if (part.Name.ToLower().Contains(keyword.ToLower()))
+                {
+                    partResults.Add(part);
+                }
+            }
+            return partResults;
+        }
+
+        private void SearchCandidatePart_Click(object sender, EventArgs e)
+        {
+            string keyword = modifyProductsSearchBar.Text;
+            List<Part> partResults = new List<Part>();
+            if (keyword == "")
+            {
+                MessageBox.Show("ERROR: Write value in the search bar to search for a part.");
+            }
+            else
+            {
+                if (modifyProductSearchComboBox.SelectedIndex == 1)
+                {
+                    partResults = SearchPart(keyword);
+                    if (partResults.Count > 0)
+                    {
+                        dgvModifyCandidateParts.DataSource = partResults;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Part(s) not found.");
+                    }
+                }
+                else
+                {
+                    if (int.TryParse(keyword, out int x))
+                    {
+                        int count = 0;
+                        foreach (Part p in Inventory.AllParts)
+                        {
+                            if (x == p.PartID)
+                            {
+                                partResults.Add(Inventory.LookupPart(int.Parse(keyword)));
+                                dgvModifyCandidateParts.DataSource = partResults;
+                                count++;
+                            }
+                        }
+                        if (count < 1)
+                        {
+                            MessageBox.Show("Part(s) not found.");
+                            dgvModifyCandidateParts.DataSource = Inventory.Products;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("ERROR: Enter a valid Part ID number.");
+                        modifyProductsSearchBar.Text = "";
+                    }
+                }
+            }
+        }
+
+        private void CandidatePartsResetBtn_Click(object sender, EventArgs e)
+        {
+            SetCandidatePartsTable();
+            modifyProductsSearchBar.Text = "";
+        }
+
         private void ModifyCandidatePart_Click(object sender, EventArgs e)
         {
-            
             Part selectedPart = (Part)dgvModifyCandidateParts.CurrentRow.DataBoundItem;
             if (currentProduct.AssociatedParts.Contains(selectedPart))
             {
