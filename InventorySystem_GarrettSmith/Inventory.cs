@@ -96,9 +96,17 @@ namespace InventorySystem_GarrettSmith
             {
                 if (product.ProductID == productID)
                 {
-                    Products.Remove(product);
-                    return true;
-                }
+                    if (product.AssociatedParts.Count != 0)
+                    {
+                        DialogResult error = MessageBox.Show("Can not delete a product that has parts associated with it.\nRemove parts from product to delete successfully.", "ERROR");
+                    }
+                    else if (product.ProductID == productID)
+                    {
+                        Products.Remove(product);
+                        MessageBox.Show("Product successfully deleted.");
+                        return true;
+                    }
+                }            
             }
             return false;
         }
@@ -118,10 +126,12 @@ namespace InventorySystem_GarrettSmith
 
         public static void UpdateProduct(int ProductID, Product product)
         {
-            int index = ProductID - 1;
-            if (product.ProductID == ProductID)
+            for (int i = 0; i < Products.Count; i++)
             {
-                Products[index] = product;
+                if (Products[i].ProductID == ProductID)
+                {
+                    Products[i] = product;
+                }
             }
         }
 
@@ -132,15 +142,36 @@ namespace InventorySystem_GarrettSmith
 
         public static bool DeletePart(Part part)
         {
-            foreach (Part p in AllParts)
+            if (AssociatedPartCheck(part))
             {
-                if (p.PartID == part.PartID)
+                MessageBox.Show("ERROR: Parts associated with products can not be deleted.");
+            }
+            else
+            {
+                foreach (Part p in AllParts)
                 {
-                    AllParts.Remove(p);
-                    return true;
+                    if (p.PartID == part.PartID)
+                    {
+                        AllParts.Remove(p);
+                        MessageBox.Show("Part successfully deleted.");
+                        return true;
+                    }
                 }
             }
             return false;
+        }
+
+        public static bool AssociatedPartCheck(Part part)
+        {
+            bool present = false;
+            foreach (Product p in Products)
+            {
+                if (p.AssociatedParts.Contains(part))
+                {
+                    present = true;
+                }
+            }
+            return present;
         }
 
         public static Part LookupPart(int partID)
@@ -156,22 +187,26 @@ namespace InventorySystem_GarrettSmith
             return foundPart;
         }
 
-        public static void UpdatePart(int PartID, Inhouse part)
+        public static void UpdatePart(int PartID, Inhouse inhousePart)
         {
-            int index = PartID - 1;
-            if (part.PartID == PartID)
+            for (int i = 0; i < AllParts.Count; i++)
             {
-                AllParts[index] = part;
-                MachineIDs[PartID] = part.MachineID;
+                if (AllParts[i].PartID == PartID)
+                {
+                    AllParts[i] = inhousePart;
+                    MachineIDs[PartID] = inhousePart.MachineID;
+                }
             }
         }
 
-        public static void UpdatePart(int PartID, Outsourced part)
+        public static void UpdatePart(int PartID, Outsourced outsourcedPart)
         {
-            int index = PartID - 1;
-            if (part.PartID == AllParts[index].PartID)
+            for (int i = 0; i < AllParts.Count; i++)
             {
-                AllParts[index] = part;
+                if (AllParts[i].PartID == PartID)
+                {
+                    AllParts[i] = outsourcedPart;
+                }
             }
         }
     }

@@ -103,7 +103,7 @@ namespace InventorySystem_GarrettSmith
                         if (count < 1)
                         {
                             MessageBox.Show("Part(s) not found.");
-                            dgvAddCandidateParts.DataSource = Inventory.Products;
+                            dgvAddCandidateParts.DataSource = Inventory.AllParts;
                         }
                     }
                     else

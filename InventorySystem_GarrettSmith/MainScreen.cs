@@ -84,7 +84,6 @@ namespace InventorySystem_GarrettSmith
             {
                 Part selectedPart = (Part)dgvParts.CurrentRow.DataBoundItem;
                 Inventory.DeletePart(selectedPart);
-                MessageBox.Show("Part successfully deleted.");
             }
         }
 
@@ -234,15 +233,7 @@ namespace InventorySystem_GarrettSmith
             DialogResult confirm = MessageBox.Show("Are you sure want to delete this product?", "WARNING", MessageBoxButtons.YesNo);
             if (confirm == DialogResult.Yes)
             {
-                if (selectedProduct.AssociatedParts.Count == 0)
-                {
-                    Inventory.RemoveProduct(selectedProduct.ProductID);
-                    MessageBox.Show("Product successfully deleted.");
-                }
-                else
-                {
-                    DialogResult error = MessageBox.Show("Can not delete a product that has parts associated with it.\nRemove parts from product to delete successfully.", "ERROR");
-                }
+                Inventory.RemoveProduct(selectedProduct.ProductID);
             }
         }
 
